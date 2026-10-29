@@ -185,7 +185,7 @@ export default async function BelgelerPage({ params }: { params: Promise<{ lang:
 
 				<div className="min-w-0 max-w-2xl">
 					<p className="eyebrow font-[family-name:var(--font-mono)]">{d.docs.pageTitle}</p>
-					<h1 className="mt-4 text-balance text-[clamp(2rem,4vw,2.9rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-text-hi">
+					<h1 className="mt-4 text-balance page-title fade-up text-text-hi">
 						{d.docs.title}
 					</h1>
 					<p className="mt-5 text-[16.5px] leading-[1.68] text-text-mid">

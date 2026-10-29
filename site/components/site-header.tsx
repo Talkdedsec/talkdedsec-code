@@ -20,7 +20,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
 		<header className="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md">
 			<div className="shell flex h-14 items-center justify-between gap-4">
 				<Link href={`/${locale}/`} className="flex h-11 shrink-0 items-center gap-2.5" aria-label="Talkdedsec">
-					<Mark className="h-6 w-6 text-text" />
+					<Mark className="h-8 w-8 text-text" />
 					<span className="text-[15px] font-semibold tracking-tight text-text-hi">Talkdedsec</span>
 				</Link>
 

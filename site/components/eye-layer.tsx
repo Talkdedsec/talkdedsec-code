@@ -58,6 +58,13 @@ export function EyeLayer({ locale, guide }: { locale: Locale; guide: Dict["guide
 		};
 	}, []);
 
+	// the still eye in the hero stands in until the WebGL scene has had a moment to draw
+	useEffect(() => {
+		if (!mounted || !run) return;
+		const t = window.setTimeout(() => document.documentElement.setAttribute("data-eye-live", ""), 450);
+		return () => window.clearTimeout(t);
+	}, [mounted, run]);
+
 	useEffect(() => {
 		const measure = () => {
 			const s = stage.current;

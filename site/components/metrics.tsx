@@ -50,14 +50,14 @@ function Stat({
 	const shown = formatNumber(useCountUp(value, active), locale, decimals);
 
 	return (
-		<div className="flex flex-col gap-2 border-l border-line pl-5">
-			<div className="flex items-baseline gap-1.5">
-				<span className="tnum font-[family-name:var(--font-mono)] text-[clamp(1.9rem,3.6vw,2.9rem)] font-medium leading-none text-text-hi">
+		<div className="flex flex-col gap-4 border-t border-line pt-6">
+			<div className="flex items-baseline gap-2">
+				<span className="numeral font-[family-name:var(--font-mono)] font-medium text-text-hi">
 					{shown}
 				</span>
-				<span className="font-[family-name:var(--font-mono)] text-[13px] text-chrome">{unit}</span>
+				<span className="font-[family-name:var(--font-mono)] text-[15px] text-brand">{unit}</span>
 			</div>
-			<span className="text-[13px] text-text-dim">{label}</span>
+			<span className="font-[family-name:var(--font-mono)] text-[11.5px] uppercase tracking-[0.12em] text-chrome">{label}</span>
 		</div>
 	);
 }
@@ -92,14 +92,14 @@ export function Metrics({ locale, t }: { locale: Locale; t: Dict["metrics"] }) {
 	return (
 		<section className="section-y border-b border-line" id="olcum">
 			<div className="shell">
-				<div className="max-w-2xl reveal">
-					<h2 className="text-balance text-[clamp(1.7rem,3.4vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-text-hi">
+				<div className="max-w-3xl reveal">
+					<h2 className="text-balance text-[clamp(2.2rem,5.6vw,4.6rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-text-hi">
 						{t.title}
 					</h2>
 					<p className="mt-4 text-pretty text-[15.5px] leading-[1.7] text-text-mid">{t.lead}</p>
 				</div>
 
-				<div ref={ref} className="mt-12 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4">
+				<div ref={ref} className="mt-16 grid gap-x-16 gap-y-14 sm:grid-cols-2">
 					<Stat value={METRICS.startupSeconds} decimals={2} unit="s" label={t.startup} active={active} locale={locale} />
 					<Stat value={METRICS.processCount} decimals={0} unit="" label={t.processes} active={active} locale={locale} />
 					<Stat value={METRICS.memoryMB / 1024} decimals={2} unit="GB" label={t.memory} active={active} locale={locale} />

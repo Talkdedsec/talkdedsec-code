@@ -100,8 +100,8 @@ export function ThemeDemo({ locale, t }: { locale: Locale; t: ThemeDemoText }) {
 		<section className="section-y border-b border-line" id="temalar">
 			<div className="shell">
 				<div className="max-w-2xl reveal">
-					<p className="eyebrow font-[family-name:var(--font-mono)]">{fill(t.themes.eyebrow, { n: formatNumber(THEMES.length, locale) })}</p>
-					<h2 className="mt-4 text-balance text-[clamp(1.7rem,3.4vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.02em] text-text-hi">
+					<p className="flex items-center gap-2.5 eyebrow font-[family-name:var(--font-mono)]"><span className="h-1 w-4 bg-brand" aria-hidden="true" />{fill(t.themes.eyebrow, { n: formatNumber(THEMES.length, locale) })}</p>
+					<h2 className="mt-5 text-balance text-[clamp(2.2rem,5.6vw,4.6rem)] font-semibold leading-[0.98] tracking-[-0.04em] text-text-hi">
 						{t.themes.title}
 					</h2>
 					<p className="mt-4 text-pretty text-[15.5px] leading-[1.7] text-text-mid">{fill(t.themes.lead, { tokens: METRICS.themeTokens, colors: METRICS.terminalColors })}</p>

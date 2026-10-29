@@ -44,7 +44,7 @@ export default async function IndirPage({ params }: { params: Promise<{ lang: st
 		<div className="section-y">
 			<div className="shell max-w-3xl">
 				<p className="eyebrow font-[family-name:var(--font-mono)]">{d.download.pageTitle}</p>
-				<h1 className="mt-4 text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-text-hi">
+				<h1 className="mt-4 text-balance page-title fade-up text-text-hi">
 					Talkdedsec{" "}
 					<span className="tnum font-[family-name:var(--font-mono)] text-[0.55em] font-normal text-text-dim">
 						{SITE.version}

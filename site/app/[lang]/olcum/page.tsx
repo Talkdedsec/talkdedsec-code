@@ -58,7 +58,7 @@ export default async function OlcumPage({ params }: { params: Promise<{ lang: st
 		<div className="section-y">
 			<div className="shell max-w-3xl">
 				<p className="eyebrow font-[family-name:var(--font-mono)]">{d.measure.eyebrow}</p>
-				<h1 className="mt-4 text-balance text-[clamp(2rem,4vw,3rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-text-hi">
+				<h1 className="mt-4 text-balance page-title fade-up text-text-hi">
 					{d.measure.title}
 				</h1>
 				<p className="mt-5 text-[16px] leading-[1.7] text-text-mid">{d.measure.lead}</p>

@@ -20,7 +20,7 @@ export const DICT = {
 		nav: { themes: "Temalar", metrics: "Ölçüm", docs: "Belgeler", download: "İndir", downloadFile: "Kurulum dosyasını indir" },
 		hero: {
 			eyebrow: "Sürüm {v} · Windows",
-			title: "Editörün açılmasını beklemeyi bırak.",
+			title: "Editörün\naçılmasını\nbekleme.",
 			lead: "Talkdedsec, açık kaynak bir editör çekirdeği üzerine kuruldu. Kullanmadığın her şey söküldü, telemetri varsayılan olarak kapalı ve gidecek bir adresi yok — açılış süresi de bellek de bunun sonucu.",
 			cta: "Windows için indir",
 			secondary: "Nasıl ölçtük",
@@ -43,14 +43,16 @@ export const DICT = {
 			hint: "Bir tema seç, kod alanı anında değişsin.",
 		},
 		agent: {
-			eyebrow: "Gömülü ajan",
-			title: "Ajan içeride, arada katman yok.",
-			lead: "Ajan editörün çekirdeğinde çalışıyor: kurulacak bir eklenti, geçilecek ayrı bir uygulama yok. Claude oturumu dosyalarınla aynı pencerede açılıyor.",
+			eyebrow: "Ajan konağı",
+			title: "Ajan çekirdekte. Anahtar sende.",
+			lead: "Ajan konağı editörün çekirdeğinde: Claude, Codex ve Copilot ajanları ayrı bir Ajanlar penceresinde çalışır. Sen bir hesap bağlamadıkça hiçbiri çalışmaz, hiçbir yere bir şey gönderilmez.",
 			points: [
-				"Kendi aboneliğinle bağlanır — koltuk ücreti, token payı ya da aracı servis yok",
-				"Ctrl+Alt+J ile anında yeni oturum",
-				"Ajan oturumları için ayrı pencere",
+				"Üç sağlayıcı, tek pencere: Claude Agent SDK, Codex, Copilot SDK",
+				"Kendi hesabınla bağlanırsın — arada Talkdedsec sunucusu yok",
+				"Oturumlar, değişiklik setleri ve izinler Ajanlar penceresinde",
 			],
+			idle: "boşta",
+			awaiting: "hesap bekliyor",
 		},
 		privacy: {
 			eyebrow: "Sıfır telemetri",
@@ -212,7 +214,7 @@ export const DICT = {
 			helpOr: "ya da",
 			helpDownload: "doğrudan indir",
 			shortcuts: [
-				["Ctrl + Alt + J", "Claude oturumu aç"],
+				["Ctrl + Alt + I", "Sohbet ve ajan panelini aç"],
 				["Ctrl + Shift + P", "Komut paleti"],
 				["Ctrl + P", "Dosyaya git"],
 				["Ctrl + `", "Terminal"],
@@ -241,7 +243,7 @@ export const DICT = {
 		nav: { themes: "Themes", metrics: "Benchmarks", docs: "Docs", download: "Download", downloadFile: "Download the installer" },
 		hero: {
 			eyebrow: "Version {v} · Windows",
-			title: "Stop waiting for your editor to open.",
+			title: "Stop waiting\nfor your editor\nto open.",
 			lead: "Talkdedsec is built on an open-source editor core. Everything you don't use was stripped out and telemetry is off by default with nowhere to send to — the startup time and the memory footprint follow from that.",
 			cta: "Download for Windows",
 			secondary: "How we measured",
@@ -264,14 +266,16 @@ export const DICT = {
 			hint: "Pick a theme and watch the code area change.",
 		},
 		agent: {
-			eyebrow: "Built-in agent",
-			title: "The agent is inside, with no layer in between.",
-			lead: "The agent runs in the editor core: no extension to install, no separate app to switch to. A Claude session opens in the same window as your files.",
+			eyebrow: "Agent host",
+			title: "The agent is in the core. The key is yours.",
+			lead: "The agent host lives in the editor core: Claude, Codex and Copilot agents run in a dedicated Agents window. Until you connect an account none of them runs, and nothing is sent anywhere.",
 			points: [
-				"Connects with your own subscription — no seat fee, no token markup, no middleman",
-				"Ctrl+Alt+J starts a session instantly",
-				"A dedicated window for agent sessions",
+				"Three providers, one window: Claude Agent SDK, Codex, Copilot SDK",
+				"You connect your own account — no Talkdedsec server in between",
+				"Sessions, change sets and permissions in the Agents window",
 			],
+			idle: "idle",
+			awaiting: "awaiting account",
 		},
 		privacy: {
 			eyebrow: "Zero telemetry",
@@ -433,7 +437,7 @@ export const DICT = {
 			helpOr: "or",
 			helpDownload: "just download it",
 			shortcuts: [
-				["Ctrl + Alt + J", "Open a Claude session"],
+				["Ctrl + Alt + I", "Open the chat and agent panel"],
 				["Ctrl + Shift + P", "Command palette"],
 				["Ctrl + P", "Go to file"],
 				["Ctrl + `", "Terminal"],

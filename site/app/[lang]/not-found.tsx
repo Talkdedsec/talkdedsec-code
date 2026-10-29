@@ -5,7 +5,7 @@ export default function NotFound() {
 		<div className="section-y">
 			<div className="shell max-w-xl">
 				<p className="eyebrow font-[family-name:var(--font-mono)]">404</p>
-				<h1 className="mt-4 text-balance text-[clamp(1.9rem,4vw,2.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-text-hi">
+				<h1 className="mt-4 text-balance page-title fade-up text-text-hi">
 					Bu sayfa yok · Page not found
 				</h1>
 				<p className="mt-5 text-[15.5px] leading-[1.7] text-text-mid">

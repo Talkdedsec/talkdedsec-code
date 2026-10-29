@@ -103,7 +103,7 @@ export default async function KonuPage({
 				<article className="mt-8 max-w-3xl">
 					<p className="eyebrow font-[family-name:var(--font-mono)]">{category.ad}</p>
 
-					<h1 className="mt-4 text-balance text-[clamp(1.9rem,3.8vw,2.7rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-text-hi">
+					<h1 className="mt-4 text-balance page-title-sm fade-up text-text-hi">
 						{topic.title}
 					</h1>
 

@@ -64,7 +64,7 @@ export function SiteFooter({ locale }: { locale: Locale }) {
 				<p className="font-[family-name:var(--font-mono)] text-[11px] text-chrome">
 					<a
 						href={`${SITE.repo}/blob/main/LICENSE.txt`}
-						className="link-underline -my-2 inline-block py-2 hover:text-text"
+						className="link-underline -my-3 inline-block py-3 hover:text-text"
 					>
 						{d.footer.license}
 					</a>{" "}

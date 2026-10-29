@@ -14,7 +14,7 @@ export default function NotFound() {
 				<main className="flex min-h-dvh items-center">
 					<div className="shell max-w-xl py-20">
 						<p className="eyebrow font-[family-name:var(--font-mono)]">404</p>
-						<h1 className="mt-4 text-balance text-[clamp(1.9rem,4vw,2.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-text-hi">
+						<h1 className="mt-4 text-balance page-title fade-up text-text-hi">
 							Bu sayfa yok
 							<span className="block text-text-mid" lang="en">
 								Page not found

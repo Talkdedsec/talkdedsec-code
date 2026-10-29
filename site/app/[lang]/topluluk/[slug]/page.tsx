@@ -91,7 +91,7 @@ export default async function TemaPage({
 								style={{ background: meta?.hue ?? theme.colors?.hue }}
 								aria-hidden="true"
 							/>
-							<h1 className="text-balance text-[clamp(1.9rem,3.8vw,2.7rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-text-hi">
+							<h1 className="text-balance page-title-sm fade-up text-text-hi">
 								{theme.name}
 							</h1>
 						</div>

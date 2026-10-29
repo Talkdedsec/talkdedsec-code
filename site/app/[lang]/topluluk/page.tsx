@@ -45,7 +45,7 @@ export default async function ToplulukPage({ params }: { params: Promise<{ lang:
 			<section className="border-b border-line">
 				<div className="shell pt-16 pb-14 md:pt-24 md:pb-20">
 					<p className="eyebrow font-[family-name:var(--font-mono)]">{d.community.eyebrow}</p>
-					<h1 className="mt-4 max-w-3xl text-balance text-[clamp(2.2rem,4.6vw,3.4rem)] font-semibold leading-[1.06] tracking-[-0.025em] text-text-hi">
+					<h1 className="mt-4 max-w-3xl text-balance page-title fade-up text-text-hi">
 						{d.community.title}
 					</h1>
 					<p className="mt-5 max-w-xl text-pretty text-[16.5px] leading-[1.68] text-text-mid">
