@@ -53,6 +53,20 @@ ya da silme ise ayrı ayrı "uygulanmış" kontrolü yapar — bunu bozma, yamal
 - Ölçümler (2026-10-29, Win 11 Pro 26300, kurulu üretim sürümü, 3 çalıştırma medyanı): açılış 0,31 sn · 8 süreç · ~1460 MB ·
   0,75 GB kurulu · 187,5 MB kurulum · 94 yerleşik eklenti · 0 source map · açılışta 0 dış bağlantı.
 
+## Site tasarımı (2026-10-29)
+- Yön: göz merkezli sinematik; tek vurgu sarı `#FFD600` (`--color-brand`), yalnız CTA, işaretler ve birimlerde.
+- Hero tam ekran, satır maskeli başlık (`\n` ile satırlara bölünür), statik göz (`public/logo.png`, klasik göz) WebGL hazır olunca
+  `data-eye-live` ile söner; telefonda `eye-mobile`. Ölçümler `numeral`, gizlilik `monument` + kaldırılan adres şeridi (`ticker`).
+- Ajan bölümü yalnız kaynakta görünenleri söyler (Claude Agent SDK, Codex, Copilot SDK; hesap bağlanmadan çalışmaz).
+- favicon/icon/apple-icon klasik gözden (`lib/eye-icon.tsx`). Alt sayfa başlıkları `page-title` / `page-title-sm`.
+- İndirme zinciri test edildi: buton → releases/latest/download → v1.144.0 → CDN, SHA-256 aynı, sayaç arttı.
+
+## Bekleyenler
+- Sosyal önizleme: `Desktop\Medya\og-images\talkdedsec-code.png` → repo Settings > Social preview (API yok, elle).
+- `code.talkdedsec.com` kapatma (onaylandı, yapılmadı): Cloudflare'de proxied A/AAAA, kaynak büyük ihtimalle vps-pro nginx.
+- `talkdedseccode` repolarını arşivleme/yönlendirme: o hesapla `gh auth login` gerekiyor.
+- Dependabot 30 uyarı (upstream bağımlılıkları), elle güncellenecek.
+
 ## Görseller
 - `powershell -ExecutionPolicy Bypass -File tlk/repo/gorsel.ps1`: editör + kurulum ekran görüntüsü (yalnız kendi penceresi, PrintWindow),
   README banner'ı, sosyal önizleme `Desktop\Medya\og-images\talkdedsec-code.png` (Settings > Social preview'a elle yüklenir).
