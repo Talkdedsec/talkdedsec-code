@@ -73,6 +73,8 @@ patch('build/gulpfile.vscode.ts', [
 		`'copilot');\n\t\tif (fs.existsSync(builtInCopilotExtensionDir)) {\n\t\t\tprepareBuiltInCopilotRipgrepShim(platform, arch, builtInCopilotExtensionDir, appNodeModulesDir);\n\t\t}\n`],
 	// no CDN hosts our source maps, so shipping them is dead weight
 	['const stripSourceMapsInPackagingTasks = isCI;', 'const stripSourceMapsInPackagingTasks = true;'],
+	[`? ['**', '!**/*.{js,css}.map']`, `? ['**', '!**/*.map']`],
+	[`depFilterPattern.push('!**/*.{js,css}.map');`, `depFilterPattern.push('!**/*.map');`],
 ]);
 
 // ---- themes --------------------------------------------------------------------------------------
@@ -153,6 +155,11 @@ save('product.json', productBefore, JSON.stringify(product, null, '\t') + '\n');
 patch('src/vs/platform/languagePacks/node/languagePacks.ts', [
 	[`\t\t\tpostUninstall: async (extension: ILocalExtension): Promise<void> => {\n\t\t\t\treturn this.postUninstallExtension(extension);\n\t\t\t}\n\t\t});\n\t}\n`,
 		`\t\t\tpostUninstall: async (extension: ILocalExtension): Promise<void> => {\n\t\t\t\treturn this.postUninstallExtension(extension);\n\t\t\t}\n\t\t});\n\t\tthis.update().catch(error => this.logService.error(error));\n\t}\n`],
+]);
+// upstream only honours argv.json "locale" on Windows; a Turkish OS gets the Turkish UI without it
+patch('src/mainImpl.ts', [
+	['const userLocale = getUserDefinedLocale(argvConfig);\n',
+		`const userLocale = getUserDefinedLocale(argvConfig) ?? (osLocale.startsWith('tr') ? 'tr' : undefined);\n`],
 ]);
 // product name in the pack's translations, with Turkish suffixes re-harmonised ("VS Code'un" -> "Talkdedsec'in")
 const SUFFIX = { u: 'i', un: 'in', nun: 'in', yu: 'i', a: 'e', ya: 'ye', da: 'te', ta: 'te', daki: 'teki', dan: 'ten', tan: 'ten', la: 'le', yla: 'le' };
