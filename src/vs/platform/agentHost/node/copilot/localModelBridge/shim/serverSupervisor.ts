@@ -1886,7 +1886,7 @@ function loadTimeoutMessage(displayName: string): string {
 }
 
 function serverRecordFailedMessage(displayName: string): string {
-	return localize('localModel.server.recordFailed', "{0} was stopped because VS Code couldn't record its server process on disk. Select Retry to try again.", displayName);
+	return localize('localModel.server.recordFailed', "{0} was stopped because Talkdedsec couldn't record its server process on disk. Select Retry to try again.", displayName);
 }
 
 function stillRunningMessage(displayName: string): string {
@@ -1902,7 +1902,7 @@ function crashedMessage(displayName: string): string {
 }
 
 export function ownedElsewhereMessage(displayName: string): string {
-	return localize('localModel.server.ownedElsewhere', "{0} can't start while another VS Code instance is running an on-device model.", displayName);
+	return localize('localModel.server.ownedElsewhere', "{0} can't start while another Talkdedsec instance is running an on-device model.", displayName);
 }
 
 export function orphanMessage(): string {

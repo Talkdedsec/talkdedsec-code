@@ -310,7 +310,7 @@ export class ChatDebugWireLogView extends Disposable {
 			DOM.show(this.hintBar);
 			DOM.append(this.hintBar, $(`span${ThemeIcon.asCSSSelector(Codicon.info)}`));
 			DOM.append(this.hintBar, $('span', undefined, missionControl
-				? localize('chatDebug.wireLog.hostCaptureHint', "Mission Control AHP logs are captured on the host. Configure {0} in the host's owning VS Code window.", AgentHostAhpJsonlLoggingSettingId)
+				? localize('chatDebug.wireLog.hostCaptureHint', "Mission Control AHP logs are captured on the host. Configure {0} in the host's owning Talkdedsec window.", AgentHostAhpJsonlLoggingSettingId)
 				: localize('chatDebug.wireLog.disabledHint', "AHP logging is disabled — enable {0} and reproduce to capture client↔host protocol frames.", AgentHostAhpJsonlLoggingSettingId)));
 		} else {
 			DOM.hide(this.hintBar);
@@ -325,7 +325,7 @@ export class ChatDebugWireLogView extends Disposable {
 		this.sources = allSources.filter(source => source.kind === AgentHostLogSourceKind.WireLog);
 		if (this.sources.length === 0) {
 			this.renderMessage(missionControl
-				? localize('chatDebug.wireLog.noHostFrames', "No host AHP log is available. Verify logging is enabled in the host's owning VS Code window and that the host allows reading its logs.")
+				? localize('chatDebug.wireLog.noHostFrames', "No host AHP log is available. Verify logging is enabled in the host's owning Talkdedsec window and that the host allows reading its logs.")
 				: wireLoggingEnabled
 					? localize('chatDebug.wireLog.noFrames', "No AHP log was found yet for this session. Interact with the agent to capture protocol frames.")
 					: localize('chatDebug.wireLog.enableToCapture', "No AHP log is available. Enable {0} and reproduce the issue to capture protocol frames.", AgentHostAhpJsonlLoggingSettingId));
@@ -722,8 +722,8 @@ export class ChatDebugWireLogView extends Disposable {
 		const dirIcon = outbound ? Codicon.arrowRight : Codicon.arrowLeft;
 		const dirEl = DOM.append(header, $(`span.chat-debug-wirelog-dir${ThemeIcon.asCSSSelector(dirIcon)}`));
 		dirEl.title = outbound
-			? localize('chatDebug.wireLog.outbound', "VS Code → Agent Host")
-			: localize('chatDebug.wireLog.inbound', "Agent Host → VS Code");
+			? localize('chatDebug.wireLog.outbound', "Talkdedsec → Agent Host")
+			: localize('chatDebug.wireLog.inbound', "Agent Host → Talkdedsec");
 
 		// Method / response label.
 		const label = frame.method ?? localize('chatDebug.wireLog.responseLabel', "(response)");

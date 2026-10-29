@@ -60,7 +60,7 @@ Registry.as<IConfigurationRegistry>(ConfigurationExtensions.Configuration).regis
 			},
 			default: [],
 			scope: ConfigurationScope.APPLICATION,
-			description: localize('issueReporter.additionalRepositories', "Additional GitHub repositories offered in the issue reporter for VS Code and Agents Window reports, in owner/repo format. The default repository remains selected initially. GitHub manages repository access."),
+			description: localize('issueReporter.additionalRepositories', "Additional GitHub repositories offered in the issue reporter for Talkdedsec and Agents Window reports, in owner/repo format. The default repository remains selected initially. GitHub manages repository access."),
 			experiment: { mode: 'auto' }
 		},
 		'issueReporter.wizard.enabled': {

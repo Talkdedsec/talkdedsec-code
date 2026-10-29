@@ -2028,7 +2028,7 @@ class AutomationHistorySection extends Disposable {
 		this.stoppingRuns.set(new Set([...this.stoppingRuns.get(), run.id]), undefined);
 		try {
 			if (!this.automationService.canStopRun?.(run) || !this.automationService.stopRun) {
-				throw new Error(localize('automationRunStopUnavailable', "This automation run cannot be stopped from VS Code."));
+				throw new Error(localize('automationRunStopUnavailable', "This automation run cannot be stopped from Talkdedsec."));
 			}
 			await this.automationService.stopRun(run);
 			status(localize('automationRunStopRequested', "Stop requested for {0}. History will update when available.", this.getAutomationName(run)));

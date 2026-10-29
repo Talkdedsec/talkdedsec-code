@@ -1167,7 +1167,7 @@ export class ProtocolServerHandler extends Disposable implements IAgentHostClien
 	 */
 	private _addInitialSubscription(client: IConnectedClient, channel: string): IStateSnapshot | undefined | Promise<IStateSnapshot | undefined> {
 		if (!this._isChannelVisible(client, channel)) {
-			this._logService.info(`[ProtocolServer] Legacy VS Code client cannot subscribe to ${channel}`);
+			this._logService.info(`[ProtocolServer] Legacy Talkdedsec client cannot subscribe to ${channel}`);
 			return undefined;
 		}
 		const sub = classifyChannel(channel);

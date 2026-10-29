@@ -521,7 +521,7 @@ export class AgentsWindowExtensionsWidget extends Disposable implements IAICusto
 				this.emptyStateSubtext.textContent = localize('agentsWindowExtensions.noMatchesHint', "Try a different search term.");
 			} else {
 				this.emptyStateText.textContent = localize('agentsWindowExtensions.empty', "No extensions installed");
-				this.emptyStateSubtext.textContent = localize('agentsWindowExtensions.emptyHint', "Extensions you install in VS Code appear here.");
+				this.emptyStateSubtext.textContent = localize('agentsWindowExtensions.emptyHint', "Extensions you install in Talkdedsec appear here.");
 			}
 			return;
 		}

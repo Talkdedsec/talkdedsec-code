@@ -1597,7 +1597,7 @@ export class OpenUserMcpResourceCommand extends Action2 {
 		// The legacy file is only offered when it already exists, so new configuration goes to Copilot Global.
 		if (hasLegacy) {
 			items.push({
-				label: localize('mcp.userConfig.vscode', "VS Code User Configuration"),
+				label: localize('mcp.userConfig.vscode', "Talkdedsec User Configuration"),
 				description: localize('mcp.userConfig.legacy', "Legacy"),
 				detail: basename(legacyResource),
 				tooltip: labelService.getUriLabel(legacyResource),

@@ -145,7 +145,7 @@ export class CopilotSessionSandbox extends Disposable {
 		try {
 			return await this._configSequencer.queue(async () => {
 				if (!context.sandboxPathGrantSaved) {
-					throw new Error(localize('copilot.permission.grant.unsupportedClient', "This client did not save the sandbox path grant. Update VS Code and retry."));
+					throw new Error(localize('copilot.permission.grant.unsupportedClient', "This client did not save the sandbox path grant. Update Talkdedsec and retry."));
 				}
 				if (token.isCancellationRequested || !requestId || !grant || this._requests.get(toolCallId) !== requestId) {
 					throw new Error(localize('copilot.permission.grant.expired', "The sandbox permission request is no longer pending."));

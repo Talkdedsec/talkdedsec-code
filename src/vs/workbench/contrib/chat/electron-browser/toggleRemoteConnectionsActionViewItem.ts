@@ -289,7 +289,7 @@ export class RemoteConnectionsActionViewItem extends BaseActionViewItem {
 					run: () => this._selectConnectionMethod('devTunnel'),
 				}),
 				labelIcon: Codicon.radioTower,
-				detail: localize('remoteConnections.devTunnel.detail', "Access workspaces and agents on this machine from VS Code or vscode.dev/agents."),
+				detail: localize('remoteConnections.devTunnel.detail', "Access workspaces and agents on this machine from Talkdedsec or vscode.dev/agents."),
 			},
 			{
 				...toAction({
@@ -302,7 +302,7 @@ export class RemoteConnectionsActionViewItem extends BaseActionViewItem {
 				labelIcon: policyDisabled ? Codicon.briefcase : Codicon.github,
 				detail: policyDisabled
 					? localize('remoteConnections.githubEnvironment.policyDisabled', "Disabled by your organization. Contact your administrator to enable GitHub Environments.")
-					: localize('remoteConnections.githubEnvironment.detail', "Access agents on this machine from VS Code, vscode.dev/agents, GitHub apps, or github.com/copilot."),
+					: localize('remoteConnections.githubEnvironment.detail', "Access agents on this machine from Talkdedsec, vscode.dev/agents, GitHub apps, or github.com/copilot."),
 				badge: localize('remoteConnections.preview', "Preview"),
 			},
 		].filter(action => action.id !== 'remoteConnections.githubEnvironment' || environmentsEnabled || policyDisabled);
@@ -451,7 +451,7 @@ export class ToggleRemoteConnectionsActionViewItem extends BaseActionViewItem {
 		if (this._usesMissionControl()) {
 			return localize('missionControlSharing.hover', "{0}\n\n{1}",
 				this.getAriaLabel(),
-				localize('remoteConnections.githubEnvironment.detail', "Access agents on this machine from VS Code, vscode.dev/agents, GitHub apps, or github.com/copilot."),
+				localize('remoteConnections.githubEnvironment.detail', "Access agents on this machine from Talkdedsec, vscode.dev/agents, GitHub apps, or github.com/copilot."),
 			);
 		}
 		const lines: string[] = [];

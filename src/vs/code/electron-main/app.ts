@@ -697,7 +697,7 @@ export class CodeApplication extends Disposable {
 
 	async startup(): Promise<void> {
 		mark('code/willStartCodeApplication');
-		this.logService.debug('Starting VS Code');
+		this.logService.debug('Starting Talkdedsec');
 		this.logService.debug(`from: ${this.environmentMainService.appRoot}`);
 		this.logService.debug('args:', this.environmentMainService.args);
 		logNodeCompileCacheStatus(message => this.logService.info(message));

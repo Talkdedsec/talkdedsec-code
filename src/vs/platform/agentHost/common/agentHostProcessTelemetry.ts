@@ -34,11 +34,11 @@ type AgentHostProcessErrorEvent = Omit<AgentHostProcessErrorData, 'exitDiagnosti
 };
 
 type AgentHostProcessErrorClassification = {
-	hostLaunchKind: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'Whether the agent host process was launched by the VS Code main process or VS Code CLI.' };
+	hostLaunchKind: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'Whether the agent host process was launched by the Talkdedsec main process or Talkdedsec CLI.' };
 	kind: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'The kind of agent host process failure.' };
 	code?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'The agent host process exit code, when available.' };
 	restartCount: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'The number of agent host restart attempts before this failure.' };
-	willRestart: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Whether VS Code will attempt to restart the agent host after this failure.' };
+	willRestart: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Whether Talkdedsec will attempt to restart the agent host after this failure.' };
 	isError: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Whether this is an error event.' };
 	callstack?: { classification: 'CallstackOrException'; purpose: 'PerformanceAndHealth'; comment: 'The callstack of an agent host process start failure, or of the startup error that made the process exit.' };
 	msg?: { classification: 'CallstackOrException'; purpose: 'PerformanceAndHealth'; comment: 'The message of an agent host process start failure, or of the startup error that made the process exit.' };
@@ -48,7 +48,7 @@ type AgentHostProcessErrorClassification = {
 	uptimeMs?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Milliseconds from agent host process spawn until exit.' };
 	fatalSignature?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'Bounded fatal condition recognized in the final stderr output, such as a V8 heap out-of-memory error. The stderr text is not sent.' };
 	exitPath?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'Whether the process exited through process.exit(), because its event loop drained, or abruptly without running Node exit handlers.' };
-	exitCaller?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'The package name, written as @scope:name for scoped packages, or VS Code module name that called process.exit(), without its path. Callers outside VS Code\'s installation and packages are reported as external.' };
+	exitCaller?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; comment: 'The package name, written as @scope:name for scoped packages, or Talkdedsec module name that called process.exit(), without its path. Callers outside Talkdedsec\'s installation and packages are reported as external.' };
 	workingSetMb?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Agent host working set in megabytes at the most recent periodic memory sample before exit.' };
 	peakWorkingSetMb?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Largest agent host working set in megabytes observed by periodic memory samples before exit.' };
 	memorySampleAgeMs?: { classification: 'SystemMetaData'; purpose: 'PerformanceAndHealth'; isMeasurement: true; comment: 'Milliseconds between the most recent agent host memory sample and the exit.' };

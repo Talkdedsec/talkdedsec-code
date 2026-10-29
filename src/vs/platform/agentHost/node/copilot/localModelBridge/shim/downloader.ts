@@ -270,7 +270,7 @@ export function createLocalModelAcquisitionError(code: LocalModelDownloadErrorCo
 		case 'notPublished': return { code, message: localize('localModel.download.notPublished', "{0} isn't available yet.", displayName), actions: retry };
 		case 'noChecksum': return { code, message: localize('localModel.download.noChecksum', "This model version doesn't publish a SHA-256 checksum, so it can't be verified or downloaded."), actions: [] };
 		case 'filesInUse': return { code, message: localize('localModel.download.filesInUse', "Some files are in use. Close other apps using this model and try again."), actions: retry };
-		case 'lockedElsewhere': return { code, message: localize('localModel.download.lockedElsewhere', "{0} is downloading in another VS Code window.", displayName), actions: retry };
+		case 'lockedElsewhere': return { code, message: localize('localModel.download.lockedElsewhere', "{0} is downloading in another Talkdedsec window.", displayName), actions: retry };
 		case 'staleLock': return { code, message: localize('localModel.download.staleLock', "A previous download of {0} didn't finish cleanly. Select Retry to continue.", displayName), actions: retry };
 		case 'insufficientMemory': return { code, message: localize('localModel.insufficientMemory', "This device doesn't have enough GPU memory for {0} ({1} available, {2} needed).", displayName, args[0] ?? '?', args[1] ?? '?'), actions: [] };
 		case 'catalogUnavailable': return { code, message: localize('localModel.catalogUnavailable', "Couldn't reach the model catalog. Check your connection and select Retry."), actions: retry };

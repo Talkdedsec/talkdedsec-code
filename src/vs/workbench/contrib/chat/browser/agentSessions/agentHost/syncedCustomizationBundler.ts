@@ -33,14 +33,14 @@ const bundleSequencer = new SequencerByKey<string>();
 
 const MANIFEST_CONTENT = JSON.stringify({
 	name: SYNCED_CUSTOMIZATION_DISPLAY_NAME,
-	description: 'Customization data synced from VS Code',
+	description: 'Customization data synced from Talkdedsec',
 }, null, '\t');
 
-const STANDALONE_DISPLAY_NAME = 'VS Code Standalone Customizations';
+const STANDALONE_DISPLAY_NAME = 'Talkdedsec Standalone Customizations';
 
 const STANDALONE_MANIFEST_CONTENT = JSON.stringify({
 	name: STANDALONE_DISPLAY_NAME,
-	description: 'Standalone customizations synced from VS Code',
+	description: 'Standalone customizations synced from Talkdedsec',
 }, null, '\t');
 
 /**

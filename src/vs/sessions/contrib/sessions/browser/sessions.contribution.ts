@@ -104,7 +104,7 @@ export const sessionsConfiguration = {
 				localize('sessions.list.externalApplicationBadge.title', "Show the creating application next to the session title."),
 				localize('sessions.list.externalApplicationBadge.details', "Show the creating application first in the session details."),
 			],
-			description: localize('sessions.list.externalApplicationBadge', "Controls where sessions created in an application other than VS Code show the creating application."),
+			description: localize('sessions.list.externalApplicationBadge', "Controls where sessions created in an application other than Talkdedsec show the creating application."),
 			default: ExternalSessionApplicationBadgeMode.Title,
 			experiment: { mode: 'auto' }
 		},

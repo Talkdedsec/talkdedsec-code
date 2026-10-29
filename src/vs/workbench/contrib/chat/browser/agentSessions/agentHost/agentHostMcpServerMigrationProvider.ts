@@ -275,9 +275,9 @@ export class AgentHostMcpServerMigrationProvider extends Disposable implements I
 			case McpServerCustomizationMigrationFailureReason.UnsupportedVariable:
 				return [localize('mcpMigrationServerUnsupportedVariable', "This server uses a variable that cannot be migrated, such as a command variable, or a workspace variable in a user configuration. Replace it with a fixed value or an environment variable ('${env:...}') to migrate this server.")];
 			case McpServerCustomizationMigrationFailureReason.EnterpriseManagedOAuth:
-				return [localize('mcpMigrationServerEnterpriseManagedOAuth', "This server uses enterprise-managed sign-in, which relies on a VS Code setting that Copilot does not have.")];
+				return [localize('mcpMigrationServerEnterpriseManagedOAuth', "This server uses enterprise-managed sign-in, which relies on a Talkdedsec setting that Copilot does not have.")];
 			case McpServerCustomizationMigrationFailureReason.OAuthClientSecret:
-				return [localize('mcpMigrationServerOAuthClientSecret', "This server's OAuth client uses a client secret stored in VS Code, which Copilot cannot use.")];
+				return [localize('mcpMigrationServerOAuthClientSecret', "This server's OAuth client uses a client secret stored in Talkdedsec, which Copilot cannot use.")];
 			case McpServerCustomizationMigrationFailureReason.UnsupportedInputDefault:
 				return [localize('mcpMigrationServerUnsupportedInputDefault', "The default value of an input contains a variable or cannot be represented in the destination MCP configuration, or the default of a pick input is not one of its options. Change the default value to migrate this server.")];
 		}

@@ -465,7 +465,7 @@ export class CloudAutomationStore extends Disposable implements ISessionsProvide
 			throw new Error(localize('cloudAutomations.triggersUnavailable', "{0} Retry loading the trigger catalog before saving.", catalog.message));
 		}
 		if (!canEditAutomationTriggers(triggers, automationTriggerChoices(catalog.definitions))) {
-			throw new Error(localize('cloudAutomations.unsupportedEdit', "This automation uses triggers that cannot be edited in VS Code. Open it on GitHub."));
+			throw new Error(localize('cloudAutomations.unsupportedEdit', "This automation uses triggers that cannot be edited in Talkdedsec. Open it on GitHub."));
 		}
 	}
 

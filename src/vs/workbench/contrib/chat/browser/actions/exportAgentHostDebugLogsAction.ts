@@ -405,7 +405,7 @@ export async function collectAgentHostDebugLogs(
 		}
 	}
 	throwIfExportCancelled(token);
-	options?.progress.report({ message: localize('exportDebugLogs.collectClient', "Collecting VS Code logs...") });
+	options?.progress.report({ message: localize('exportDebugLogs.collectClient', "Collecting Talkdedsec logs...") });
 	const forwardedAgentHostLogFileNames = new Set<string>();
 
 	let ahpLogId: string | undefined;
@@ -641,7 +641,7 @@ export async function exportAgentHostDebugLogs(
 					const saveResult = await raceCancellationError(exportService.save(destination, collectionResult.value.files, collectionResult.value.hostArtifact, options), options.token);
 					throwIfExportCancelled(options.token);
 					if (collectionResult.value.hostCollectionError) {
-						notificationService.warn(localize('exportDebugLogs.partialExport', "Only VS Code logs were exported. Agent Host logs could not be collected: {0}", collectionResult.value.hostCollectionError));
+						notificationService.warn(localize('exportDebugLogs.partialExport', "Only Talkdedsec logs were exported. Agent Host logs could not be collected: {0}", collectionResult.value.hostCollectionError));
 					} else if (saveResult?.hostSaveError) {
 						notificationService.warn(localize('exportDebugLogs.partialSave', "Agent Host logs were not fully exported: {0}", saveResult.hostSaveError));
 					}
@@ -824,7 +824,7 @@ async function exportFilesToLocalFolder(
 	}
 	for (const file of files) {
 		throwIfExportCancelled(options?.token ?? CancellationToken.None);
-		options?.progress.report({ message: localize('exportDebugLogs.copyClient', "Saving VS Code log: {0}", file.path) });
+		options?.progress.report({ message: localize('exportDebugLogs.copyClient', "Saving Talkdedsec log: {0}", file.path) });
 		if (file.path.startsWith('ahp/') && copiedHostPaths.has(`ahp/mission-control/${file.path.slice('ahp/'.length)}`)) {
 			continue;
 		}

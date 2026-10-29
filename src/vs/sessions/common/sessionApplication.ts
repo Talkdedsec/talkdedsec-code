@@ -136,7 +136,7 @@ function getKnownSessionApplicationLabel(id: KnownSessionApplicationId): string 
 		case UNKNOWN_SESSION_APPLICATION_ID:
 			return localize('application.unknown', "Unknown");
 		case 'vscode':
-			return localize('application.vscode', "VS Code");
+			return localize('application.vscode', "Talkdedsec");
 		case 'github/cli':
 			return localize('application.copilotCli', "Copilot CLI");
 		case 'github/autopilot':

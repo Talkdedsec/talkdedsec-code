@@ -185,7 +185,7 @@ export function createLlamaRuntimeError(failure: ILlamaProbeFailure, details: { 
 			actions.push('openSettings');
 			break;
 		case 'runtimeTooOld':
-			message = localize('localModel.runtimeTooOld', "The llama-server at {0} is missing features VS Code needs ({1}). Install a newer llama.cpp build, then set {2} to its llama-server and select Retry.", details.path ?? '', (details.missingFlags ?? []).join(', '), serverPathSettingLabel());
+			message = localize('localModel.runtimeTooOld', "The llama-server at {0} is missing features Talkdedsec needs ({1}). Install a newer llama.cpp build, then set {2} to its llama-server and select Retry.", details.path ?? '', (details.missingFlags ?? []).join(', '), serverPathSettingLabel());
 			actions.push(...LLAMA_CPP_DIRECTIONS_ACTIONS);
 			break;
 		case 'runtimeLibraryMissing':

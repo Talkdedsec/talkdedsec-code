@@ -185,7 +185,7 @@ import { CODEX_COMPACT_SLASH_COMMAND } from '../codexCompactCommand.js';
 
 const CLIENT_INFO = {
 	name: 'vscode_agent_host',
-	title: 'VS Code Agent Host',
+	title: 'Talkdedsec Agent Host',
 	// The codex `clientInfo.version` is informational. Hardcoded to a
 	// non-empty placeholder; bumping it isn't required when our code
 	// changes.

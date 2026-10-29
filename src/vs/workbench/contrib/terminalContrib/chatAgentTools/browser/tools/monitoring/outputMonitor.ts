@@ -360,7 +360,7 @@ export class OutputMonitor extends Disposable implements IOutputMonitor {
 		// always treat it as a stop signal regardless of task active state (which can be stale).
 		const isTask = this._execution.task !== undefined;
 		if (isTask && detectsVSCodeTaskFinishMessage(outputTail)) {
-			this._logService.trace('OutputMonitor: Idle -> VS Code task finish message detected, stopping');
+			this._logService.trace('OutputMonitor: Idle -> Talkdedsec task finish message detected, stopping');
 			// Task is finished, ignore the "press any key to close" message
 			return { shouldContinuePolling: false, output };
 		}

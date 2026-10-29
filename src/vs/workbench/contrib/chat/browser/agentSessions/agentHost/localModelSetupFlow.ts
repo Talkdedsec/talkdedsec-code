@@ -286,8 +286,8 @@ export function buildLocalModelSetUpConsent(status: ILocalModelStatusV1, family:
 	}
 	if (!status.runtime.version) {
 		details.push(downloads
-			? localize('localModel.consent.runtimeNeededDownload', "Loading {0} needs llama.cpp, which VS Code doesn't install. You can get it while the model downloads.", name)
-			: localize('localModel.consent.runtimeNeeded', "Loading {0} needs llama.cpp, which VS Code doesn't install.", name));
+			? localize('localModel.consent.runtimeNeededDownload', "Loading {0} needs llama.cpp, which Talkdedsec doesn't install. You can get it while the model downloads.", name)
+			: localize('localModel.consent.runtimeNeeded', "Loading {0} needs llama.cpp, which Talkdedsec doesn't install.", name));
 	}
 	if (offer?.fit === 'near') {
 		details.push(status.device.capacityBytes
@@ -368,7 +368,7 @@ export class LocalModelSetupFlow implements ILocalModelInteractionHandler {
 		if (!family.install) {
 			files = localize('localModel.remove.partial', "Files downloaded so far are deleted.");
 		} else if (!family.install.owned) {
-			files = localize('localModel.remove.notOwned', "VS Code didn't download these model files, so they stay on this device.");
+			files = localize('localModel.remove.notOwned', "Talkdedsec didn't download these model files, so they stay on this device.");
 		} else {
 			files = localize('localModel.remove.owned', "Its model files are deleted from this device.");
 		}

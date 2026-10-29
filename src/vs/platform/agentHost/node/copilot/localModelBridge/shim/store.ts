@@ -469,7 +469,7 @@ export class LocalModelStore {
 		const versionDir = this.versionDir(input.registry, input.assetName, input.version);
 		const owner = await this.readOwner(input.registry, input.assetName);
 		if (!owner?.versions.includes(input.version)) {
-			throw new LocalModelStoreError('storage', 'Version was not begun by VS Code');
+			throw new LocalModelStoreError('storage', 'Version was not begun by Talkdedsec');
 		}
 		if (![input.primaryFile, ...input.files.map(file => file.path)].every(name => resolveModelFilePath(versionDir, name))) {
 			throw new LocalModelStoreError('storage', 'Invalid file name');

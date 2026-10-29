@@ -88,7 +88,7 @@ export class CloudSandboxStartupError extends Error implements IErrorWithActions
 			? localize('cloudSandbox.startup.preparationUnknown', "Check your session settings and GitHub sign-in before trying again.")
 			: failureMessage(kind, retryAfter);
 		super(phase === 'connection'
-			? localize('cloudSandbox.startup.connectionFailed', "Cloud setup started, but VS Code couldn't connect. {0}", reason)
+			? localize('cloudSandbox.startup.connectionFailed', "Cloud setup started, but Talkdedsec couldn't connect. {0}", reason)
 			: phase === 'preparation'
 				? localize('cloudSandbox.startup.preparationFailed', "Couldn't prepare the cloud session. {0}", reason)
 				: kind === 'unknown'

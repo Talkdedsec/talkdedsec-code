@@ -106,7 +106,7 @@ export class RunTestTool implements IToolImpl {
 		toolReferenceName: 'runTests',
 		legacyToolReferenceFullNames: ['runTests'],
 		displayName: 'Run tests',
-		modelDescription: 'Run tests discovered by VS Code to execute tests or validate changes. Prefer focused file paths to avoid long runs. Set mode="coverage" to collect coverage, optionally focused with coverageFiles. If VS Code tests are unavailable or discovery is pending, use the repository\'s configured test command instead; do not repeatedly check the same paths.',
+		modelDescription: 'Run tests discovered by Talkdedsec to execute tests or validate changes. Prefer focused file paths to avoid long runs. Set mode="coverage" to collect coverage, optionally focused with coverageFiles. If Talkdedsec tests are unavailable or discovery is pending, use the repository\'s configured test command instead; do not repeatedly check the same paths.',
 		icon: Codicon.beaker,
 		inputSchema: {
 			type: 'object',
@@ -178,12 +178,12 @@ export class RunTestTool implements IToolImpl {
 		if (!testCases.length) {
 			const hasWorkspaceTests = [...this._testService.collection.rootItems].some(root => root.children.size > 0);
 			const message = !params.files?.length && !hasWorkspaceTests
-				? localize('runTestTool.noWorkspaceTests', "No tests are available to run through VS Code's test extensions in this workspace. No tests were run; this is not a passing test result.")
+				? localize('runTestTool.noWorkspaceTests', "No tests are available to run through Talkdedsec's test extensions in this workspace. No tests were run; this is not a passing test result.")
 				: params.testNames?.length && (!discovery.files.length || discovery.files.some(file => file.tests.length))
-					? localize('runTestTool.noNames', "No discovered VS Code tests matched the requested test names. The request has not been validated.")
-					: localize('runTestTool.noTests', "No VS Code tests matched the requested files. The request has not been validated.");
+					? localize('runTestTool.noNames', "No discovered Talkdedsec tests matched the requested test names. The request has not been validated.")
+					: localize('runTestTool.noTests', "No Talkdedsec tests matched the requested files. The request has not been validated.");
 			return {
-				content: [{ kind: 'text', value: `${message}\n${diagnostics || localize('runTestTool.controllers', "Registered VS Code test controllers: {0}.", [...this._testService.getTestControllers()].length)}\n${this._getUnvalidatedGuidance()}` }],
+				content: [{ kind: 'text', value: `${message}\n${diagnostics || localize('runTestTool.controllers', "Registered Talkdedsec test controllers: {0}.", [...this._testService.getTestControllers()].length)}\n${this._getUnvalidatedGuidance()}` }],
 				toolResultError: message,
 			};
 		}
@@ -265,7 +265,7 @@ export class RunTestTool implements IToolImpl {
 
 	private _getUnvalidatedGuidance(): string {
 		return [...this._testService.getTestControllers()].length === 0
-			? localize('runTestTool.discoveryUnavailable', "VS Code test discovery is unavailable without a registered test controller. Use the repository's configured test command instead of repeatedly checking the same paths.")
+			? localize('runTestTool.discoveryUnavailable', "Talkdedsec test discovery is unavailable without a registered test controller. Use the repository's configured test command instead of repeatedly checking the same paths.")
 			: localize('runTestTool.configuredCommand', "This does not establish that the workspace contains no tests. Use the repository's configured test command if one is defined; otherwise report that no tests could be run. Do not retry this tool unless discovery or configuration changes.");
 	}
 
@@ -541,7 +541,7 @@ export class RunTestTool implements IToolImpl {
 						}
 					} catch (error) {
 						errors.push(isCancellationError(error)
-							? localize('runTestTool.controllerDiscoveryPending', "VS Code test discovery is pending for controller {0}. The request has not been validated.", root.controllerId)
+							? localize('runTestTool.controllerDiscoveryPending', "Talkdedsec test discovery is pending for controller {0}. The request has not been validated.", root.controllerId)
 							: getErrorMessage(error));
 					}
 				}));
@@ -613,7 +613,7 @@ export class RunTestTool implements IToolImpl {
 			[TestDiscoveryState.Unknown]: localize('runTestTool.state.unknown', "unknown"),
 		};
 		return [
-			localize('runTestTool.controllers', "Registered VS Code test controllers: {0}.", [...this._testService.getTestControllers()].length),
+			localize('runTestTool.controllers', "Registered Talkdedsec test controllers: {0}.", [...this._testService.getTestControllers()].length),
 			...files.flatMap(file => [
 				file.existence === TestFileExistence.Exists
 					? localize('runTestTool.pathExists', "{0}: path exists.", file.path)

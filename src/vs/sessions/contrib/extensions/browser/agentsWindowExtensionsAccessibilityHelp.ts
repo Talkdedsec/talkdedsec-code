@@ -37,7 +37,7 @@ export class AgentsWindowExtensionsAccessibilityHelp implements IAccessibleViewI
 			AccessibleViewProviderId.AgentsWindowExtensions,
 			{ type: AccessibleViewType.Help },
 			() => [
-				localize('agentsWindowExtensions.help.overview', "You are in the Extensions section of Agent Customizations. It lists the extensions installed in VS Code and whether each one runs in the Agents window. Enabling or disabling an extension here only affects the Agents window."),
+				localize('agentsWindowExtensions.help.overview', "You are in the Extensions section of Agent Customizations. It lists the extensions installed in Talkdedsec and whether each one runs in the Agents window. Enabling or disabling an extension here only affects the Agents window."),
 				localize('agentsWindowExtensions.help.groups', "Extensions that support the Agents window are listed under Supported and are enabled by default. Other extensions are listed under Other Extensions and are disabled by default because they might not work as expected."),
 				...(hasSuggestedGroup ? [localize('agentsWindowExtensions.help.aiFeatures', "Extensions listed under AI Features haven't declared support for the Agents window but add AI features, such as tools, MCP servers, or skills, which are read as part of the extension. Like other extensions, they are disabled by default.")] : []),
 				...(autoEnable === true ? [localize('agentsWindowExtensions.help.autoEnabled', "Extensions that add AI features and don't rely on views, debugging, or other features that are unavailable in the Agents window are enabled automatically instead. You can disable them like any other extension.")] : []),

@@ -88,7 +88,7 @@ export class SetChatBackgroundTool implements IToolImpl {
 			userDescription: localize('setChatBackground.userDescription', "Set the chat background of the Agents window to an image or a pattern"),
 			modelDescription: `Set or remove the chat background in the Agents window, or change its image layout. Applies an existing image file or the Codicons preset; does not generate images.
 
-Use an absolute image path or one relative to the invoking chat's working directory. Supports ${chatBackgroundImageExtensions.join(', ')} up to ${MAX_IMAGE_SIZE / (1024 * 1024)} MB. Images are copied into VS Code storage.
+Use an absolute image path or one relative to the invoking chat's working directory. Supports ${chatBackgroundImageExtensions.join(', ')} up to ${MAX_IMAGE_SIZE / (1024 * 1024)} MB. Images are copied into Talkdedsec storage.
 
 Changes persist across chats for the active color scheme, leaving the other scheme unchanged. High contrast themes hide backgrounds. Omitting layout keeps the current layout. The result includes image dimensions and the previous background for undo.`,
 			source: ToolDataSource.Internal,
@@ -106,7 +106,7 @@ Changes persist across chats for the active color scheme, leaving the other sche
 					preset: {
 						type: 'string',
 						enum: [...chatBackgroundPresets],
-						description: '"codicons" for a theme-aware pattern of VS Code icons, "none" to remove the background. Not combined with image or layout.',
+						description: '"codicons" for a theme-aware pattern of Talkdedsec icons, "none" to remove the background. Not combined with image or layout.',
 					},
 					layout: {
 						type: 'string',
@@ -253,7 +253,7 @@ Changes persist across chats for the active color scheme, leaving the other sche
 			throw new SetChatBackgroundError(`${extension ? `"${extension}" images are` : 'Files without an extension are'} not supported. Use one of: ${chatBackgroundImageExtensions.join(', ')}.`);
 		}
 		// Agent hosts run client tools without the calling chat when no chat view renders the call.
-		await this.validateFile(source, known || workingDirectory ? '' : ' No working directory is known for this call, so the path was resolved on the machine running VS Code.');
+		await this.validateFile(source, known || workingDirectory ? '' : ' No working directory is known for this call, so the path was resolved on the machine running Talkdedsec.');
 		const imported = known ? undefined : await this.importImage(source, folder, token);
 		const image = imported?.image ?? source;
 		if (token.isCancellationRequested) {

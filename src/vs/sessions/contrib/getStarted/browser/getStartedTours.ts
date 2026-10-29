@@ -187,7 +187,7 @@ function createKeepChangesSteps(context: IGetStartedTourContext): ISpotlightStep
 			id: 'changesEditor',
 			targetId: GetStartedTourTarget.ChangesEditor,
 			title: localize('getStarted.tour.keepChanges.editor.title', "Review the changes"),
-			description: localize('getStarted.tour.keepChanges.editor.description', "Review each change in the diff editor you know from VS Code. You can edit the files, or comment on a line to give the agent feedback."),
+			description: localize('getStarted.tour.keepChanges.editor.description', "Review each change in the diff editor you know from Talkdedsec. You can edit the files, or comment on a line to give the agent feedback."),
 			placement: 'left',
 			allowTargetInteraction: true,
 			missingTarget: WAIT_FOR_TARGET,
