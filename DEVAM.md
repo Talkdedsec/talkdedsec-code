@@ -63,7 +63,8 @@ ya da silme ise ayrı ayrı "uygulanmış" kontrolü yapar — bunu bozma, yamal
 
 ## Bekleyenler
 - Sosyal önizleme: `Desktop\Medya\og-images\talkdedsec-code.png` → repo Settings > Social preview (API yok, elle).
-- `code.talkdedsec.com` kapatma (onaylandı, yapılmadı): Cloudflare'de proxied A/AAAA, kaynak büyük ihtimalle vps-pro nginx.
+- ~~`code.talkdedsec.com` kapatma~~ yapıldı (2026-10-29): vps-pro `conf.d/code.talkdedsec.conf` → `.conf.disabled` (nginx reload),
+  Cloudflare A kaydı silindi, NXDOMAIN. Site dosyaları `/var/www/code.talkdedsec.com` (9 MB) duruyor; silmek için ayrıca onay.
 - `talkdedseccode` repolarını arşivleme/yönlendirme: o hesapla `gh auth login` gerekiyor.
 - Dependabot 30 uyarı (upstream bağımlılıkları), elle güncellenecek.
 
