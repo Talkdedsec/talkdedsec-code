@@ -62,7 +62,7 @@ function getLockedPackageVersion(packageName: string): string {
 const sourceMappingURLBase = `https://main.vscode-cdn.net/sourcemaps/${commit}`;
 const isCI = !!process.env['CI'] || !!process.env['BUILD_ARTIFACTSTAGINGDIRECTORY'] || !!process.env['GITHUB_WORKSPACE'];
 const useCdnSourceMapsForPackagingTasks = isCI;
-const stripSourceMapsInPackagingTasks = isCI;
+const stripSourceMapsInPackagingTasks = true;
 
 const coreCIOutBuildTask = task.series(
 	checkApiProposalNamesTask,
@@ -566,7 +566,9 @@ function prepareCopilotRipgrepShimTask(platform: string, arch: string, destinati
 		const appNodeModulesDir = path.join(appBase, 'node_modules.asar.unpacked');
 
 		const builtInCopilotExtensionDir = path.join(appBase, 'extensions', 'copilot');
-		prepareBuiltInCopilotRipgrepShim(platform, arch, builtInCopilotExtensionDir, appNodeModulesDir);
+		if (fs.existsSync(builtInCopilotExtensionDir)) {
+			prepareBuiltInCopilotRipgrepShim(platform, arch, builtInCopilotExtensionDir, appNodeModulesDir);
+		}
 	};
 }
 
@@ -633,7 +635,6 @@ BUILD_TARGETS.forEach(buildTarget => {
 			copyCodiconsTask,
 			cleanExtensionsBuildTask,
 			compileNonNativeExtensionsBuildTask,
-			compileCopilotExtensionBuildTask,
 			compileExtensionMediaBuildTask,
 			writeISODate('out-build'),
 			esbuildBundleTask,

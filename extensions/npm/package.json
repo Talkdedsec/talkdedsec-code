@@ -323,7 +323,7 @@
         "npm.fetchOnlinePackageInfo": {
           "type": "boolean",
           "description": "%config.npm.fetchOnlinePackageInfo%",
-          "default": true,
+          "default": false,
           "scope": "window",
           "tags": [
             "usesOnlineServices"

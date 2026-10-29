@@ -48,6 +48,7 @@ export class NativeLanguagePackService extends LanguagePackBaseService {
 				return this.postUninstallExtension(extension);
 			}
 		});
+		this.update().catch(error => this.logService.error(error));
 	}
 
 	async getBuiltInExtensionTranslationsUri(id: string, language: string): Promise<URI | undefined> {

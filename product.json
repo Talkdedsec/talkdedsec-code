@@ -206,10 +206,34 @@
 	],
 	"onboardingThemes": [
 		{
-			"id": "dark-2026",
-			"label": "Dark 2026",
-			"themeId": "Dark 2026",
+			"id": "talkdedsec-dark",
+			"label": "Talkdedsec Dark",
+			"themeId": "Talkdedsec Dark",
 			"type": "dark"
+		},
+		{
+			"id": "talkdedsec-midnight",
+			"label": "Talkdedsec Midnight",
+			"themeId": "Talkdedsec Midnight",
+			"type": "dark"
+		},
+		{
+			"id": "talkdedsec-matrix",
+			"label": "Talkdedsec Matrix",
+			"themeId": "Talkdedsec Matrix",
+			"type": "dark"
+		},
+		{
+			"id": "talkdedsec-ember",
+			"label": "Talkdedsec Ember",
+			"themeId": "Talkdedsec Ember",
+			"type": "dark"
+		},
+		{
+			"id": "talkdedsec-light",
+			"label": "Talkdedsec Light",
+			"themeId": "Talkdedsec Light",
+			"type": "light"
 		},
 		{
 			"id": "hc-dark",
@@ -222,12 +246,6 @@
 			"label": "Solarized Dark",
 			"themeId": "Solarized Dark",
 			"type": "dark"
-		},
-		{
-			"id": "light-2026",
-			"label": "Light 2026",
-			"themeId": "Light 2026",
-			"type": "light"
 		},
 		{
 			"id": "hc-light",
@@ -246,8 +264,16 @@
 		"GitHub.copilot-chat"
 	],
 	"sessionsWindowAllowedExtensions": [],
-	"voiceWsUrl": "wss://falcon-caas.mai.microsoft.com/voice-code/api/v1/realtime/voice",
 	"documentationUrl": "https://code.talkdedsec.com",
 	"requestFeatureUrl": "https://github.com/talkdedseccode/talkdedsec-editor/discussions",
-	"privacyStatementUrl": "https://code.talkdedsec.com"
+	"privacyStatementUrl": "https://code.talkdedsec.com",
+	"extensionsGallery": {
+		"serviceUrl": "https://open-vsx.org/vscode/gallery",
+		"itemUrl": "https://open-vsx.org/vscode/item",
+		"resourceUrlTemplate": "https://open-vsx.org/vscode/asset/{publisher}/{name}/{version}/Microsoft.VisualStudio.Code.WebResources/{path}",
+		"controlUrl": "",
+		"recommendationsUrl": "",
+		"nlsBaseUrl": "",
+		"publisherUrl": ""
+	}
 }

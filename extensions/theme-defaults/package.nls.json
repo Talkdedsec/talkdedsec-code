@@ -1,4 +1,9 @@
 {
+	"talkdedsecDarkThemeLabel": "Talkdedsec Dark",
+	"talkdedsecMidnightThemeLabel": "Talkdedsec Midnight",
+	"talkdedsecMatrixThemeLabel": "Talkdedsec Matrix",
+	"talkdedsecEmberThemeLabel": "Talkdedsec Ember",
+	"talkdedsecLightThemeLabel": "Talkdedsec Light",
 	"displayName": "Default Themes",
 	"description": "The default Visual Studio light and dark themes",
 	"light2026ThemeLabel": "Light 2026",
