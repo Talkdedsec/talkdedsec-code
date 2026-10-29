@@ -38,5 +38,14 @@ Son güncelleme: 2026-10-29
 - Dil paketi 1.131 çevirisi; 1.144'te yeni gelen metinler İngilizce kalır.
 - Chat paneli hâlâ Copilot kurulumu önerebilir (`defaultChatAgent` silinemez, workbench çöküyor).
 
+## Kurulum kabuğu (`tlk/kurulum/`)
+- C++ Win32 + Direct2D/DirectWrite, WebView2 yok, statik CRT. Inno kurulumu RCDATA olarak gömülü; temp'e açılıp
+  `/VERYSILENT /TASKS=… /DIR=… /TLKPROGRESS=<dosya>` ile çalışır, ilerleme code.iss'teki köprüden binde olarak okunur.
+- Göz: `tlk/logo.png` açılışta 94 sütunluk yarım ton ızgarayla noktalara çevrilir (sitedekiyle aynı yöntem); imleci izler,
+  göz kırpar, kurulumda açıya göre yanar, bitince parlar.
+- Sayfalar: karşılama, seçenekler (masaüstü, PATH, sağ tık, ilişkilendirme, bitince başlat, konum), kuruluyor, hazır, hata.
+- TR/EN: kurulum dili + `~/.talkdedsec/argv.json` "locale". Mevcut kurulum kayıt defterinden bulunur → "Güncelle" modu.
+- Klavye: Tab/Shift+Tab odak, Enter/Space, Esc. Açıkken (mutex `talkdedsec`) kurmaz, uyarır.
+
 ## Sıradaki
 - `npm ci` + derleme, açılış testi (tema, Türkçe, Open VSX, kurulum sihirbazı).

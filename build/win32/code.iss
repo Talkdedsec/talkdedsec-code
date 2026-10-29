@@ -1431,12 +1431,24 @@ end;
 var
   LastReportedProgressPct: Integer;
 
+var
+  TlkLastPermille: Integer;
+
 procedure CurInstallProgressChanged(CurProgress, MaxProgress: Integer);
 var
   ProgressFilePath: String;
   ProgressContent: String;
   CurrentPct: Integer;
+  TlkPermille: Integer;
 begin
+  if (MaxProgress > 0) and (ExpandConstant('{param:TLKPROGRESS}') <> '') then begin
+    TlkPermille := Round(CurProgress * 1000.0 / MaxProgress);
+    if TlkPermille <> TlkLastPermille then begin
+      TlkLastPermille := TlkPermille;
+      SaveStringToFile(ExpandConstant('{param:TLKPROGRESS}'), IntToStr(TlkPermille), False);
+    end;
+  end;
+
   if IsBackgroundUpdate() then begin
     ProgressFilePath := GetUpdateProgressFilePath();
     if ProgressFilePath <> '' then begin

@@ -15,7 +15,8 @@ function patch(file, pairs) {
 	const before = read(file);
 	let s = before;
 	for (const [from, to] of pairs) {
-		if (!s.includes(from) && !s.includes(to)) {
+		if (s.includes(to)) { continue; }
+		if (!s.includes(from)) {
 			throw new Error(`${file}: pattern not found, upstream changed:\n${from}`);
 		}
 		s = s.split(from).join(to);
@@ -148,6 +149,11 @@ save('product.json', productBefore, JSON.stringify(product, null, '\t') + '\n');
 	const dark = fs.readFileSync(p('tlk/kurulum-koyu.pas'), 'utf8');
 	save(f, before, before.includes('procedure TlkKarart(') ? before : before.replace(/\n*$/, '\n\n') + dark);
 }
+// progress bridge for the custom setup shell: it runs this installer silently with /TLKPROGRESS=<file>
+patch('build/win32/code.iss', [
+	[`procedure CurInstallProgressChanged(CurProgress, MaxProgress: Integer);\nvar\n  ProgressFilePath: String;\n  ProgressContent: String;\n  CurrentPct: Integer;\nbegin\n  if IsBackgroundUpdate() then begin\n`,
+		`var\n  TlkLastPermille: Integer;\n\nprocedure CurInstallProgressChanged(CurProgress, MaxProgress: Integer);\nvar\n  ProgressFilePath: String;\n  ProgressContent: String;\n  CurrentPct: Integer;\n  TlkPermille: Integer;\nbegin\n  if (MaxProgress > 0) and (ExpandConstant('{param:TLKPROGRESS}') <> '') then begin\n    TlkPermille := Round(CurProgress * 1000.0 / MaxProgress);\n    if TlkPermille <> TlkLastPermille then begin\n      TlkLastPermille := TlkPermille;\n      SaveStringToFile(ExpandConstant('{param:TLKPROGRESS}'), IntToStr(TlkPermille), False);\n    end;\n  end;\n\n  if IsBackgroundUpdate() then begin\n`],
+]);
 
 // ---- Turkish UI ----------------------------------------------------------------------------------
 
