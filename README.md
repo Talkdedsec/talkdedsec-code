@@ -1,76 +1,75 @@
-# Visual Studio Code - Open Source ("Code - OSS")
-[![Feature Requests](https://img.shields.io/github/issues/microsoft/vscode/feature-request.svg)](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
-[![Bugs](https://img.shields.io/github/issues/microsoft/vscode/bug.svg)](https://github.com/microsoft/vscode/issues?utf8=✓&q=is%3Aissue+is%3Aopen+label%3Abug)
-
-## The Repository
-
-This repository ("`Code - OSS`") is where we (Microsoft) develop the [Visual Studio Code](https://code.visualstudio.com) product together with the community. Not only do we work on code and issues here, but we also publish our [roadmap](https://github.com/microsoft/vscode/wiki/Roadmap), [monthly iteration plans](https://github.com/microsoft/vscode/wiki/Iteration-Plans), and our [endgame plans](https://github.com/microsoft/vscode/wiki/Running-the-Endgame). This source code is available to everyone under the standard [MIT license](https://github.com/microsoft/vscode/blob/main/LICENSE.txt).
-
-## Visual Studio Code
-
 <p align="center">
-  <img alt="VS Code in action" src="https://github.com/user-attachments/assets/56af271c-949d-454c-a3ea-16188c063414">
+  <img src=".github/assets/banner.png" alt="Talkdedsec — a code editor that answers to you" width="100%">
 </p>
 
-[Visual Studio Code](https://code.visualstudio.com) is a distribution of the `Code - OSS` repository with Microsoft-specific customizations released under a traditional [Microsoft product license](https://code.visualstudio.com/License/).
+<p align="center">
+  <a href="https://github.com/Talkdedsec/talkdedsec-code/releases/latest"><img src="https://img.shields.io/github/v/release/Talkdedsec/talkdedsec-code?style=flat-square&color=FFD600&labelColor=1a1a1a" alt="Latest release"></a>
+  <a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-FFD600?style=flat-square&labelColor=1a1a1a" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/platform-Windows%20x64-FFD600?style=flat-square&labelColor=1a1a1a" alt="Windows x64">
+  <a href="https://talkdedsec.github.io/talkdedsec-code/"><img src="https://img.shields.io/badge/site-talkdedsec.github.io-FFD600?style=flat-square&labelColor=1a1a1a" alt="Website"></a>
+</p>
 
-[Visual Studio Code](https://code.visualstudio.com) combines the simplicity of a code editor with what developers need for their core edit-build-debug cycle. It provides comprehensive code editing, navigation, and understanding support along with lightweight debugging, a rich extensibility model, and lightweight integration with existing tools.
+<p align="center"><b>English</b> · <a href="README.tr.md">Türkçe</a> · <a href="https://talkdedsec.com">talkdedsec.com</a></p>
 
-Visual Studio Code is updated monthly with new features and bug fixes. You can download it for Windows, macOS, and Linux on the [Visual Studio Code website](https://code.visualstudio.com/Download). To get the latest releases every day, install the [Insiders build](https://code.visualstudio.com/insiders).
+**Talkdedsec** is a telemetry-free code editor for Windows, built on the open-source VS Code core. Same editor you know, without the data collection, with its own themes, a Turkish UI and an installer that feels like part of the product.
 
-## Contributing
+<p align="center">
+  <img src=".github/assets/editor.png" alt="Talkdedsec editor with the Talkdedsec Dark theme" width="100%">
+</p>
 
-There are many ways in which you can participate in this project, for example:
+## What is different
 
-* [Submit bugs and feature requests](https://github.com/microsoft/vscode/issues), and help us verify them as they are checked in
-* Review [source code changes](https://github.com/microsoft/vscode/pulls)
-* Review the [documentation](https://github.com/microsoft/vscode-docs) and make pull requests for anything from typos to new content.
+- **No telemetry by default.** Telemetry and experiments are off out of the box. The voice service, JSON schema downloads, npm package lookups and the chat plugin list no longer call out on their own.
+- **Open VSX.** Extensions come from [open-vsx.org](https://open-vsx.org).
+- **Five themes.** Talkdedsec Dark, Midnight, Matrix, Ember and Light. Chrome, panels, git decorations and the terminal turn together.
+- **Turkish and English.** The Turkish language pack ships inside; Turkish Windows opens in Turkish, the product name is consistent in every string.
+- **Lean package.** No bundled Copilot extension, no test extensions, no source maps.
+- **Its own installer.** A native Direct2D window over a silent Inno Setup: the dotted eye follows the cursor and lights up as files land. No WebView, no runtime.
 
-If you are interested in fixing issues and contributing directly to the codebase, please see the document [How to Contribute](https://github.com/microsoft/vscode/wiki/How-to-Contribute), which covers the following:
+<p align="center">
+  <img src=".github/assets/setup.png" alt="Talkdedsec setup" width="80%">
+</p>
 
-* [How to build and run from source](https://github.com/microsoft/vscode/wiki/How-to-Contribute)
-* [The development workflow, including debugging and running tests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#debugging)
-* [Coding guidelines](https://github.com/microsoft/vscode/wiki/Coding-Guidelines)
-* [Submitting pull requests](https://github.com/microsoft/vscode/wiki/How-to-Contribute#pull-requests)
-* [Finding an issue to work on](https://github.com/microsoft/vscode/wiki/How-to-Contribute#where-to-contribute)
-* [Contributing to translations](https://aka.ms/vscodeloc)
+## Install
 
-## Feedback
+1. Download `TalkdedsecSetup.exe` from the [latest release](https://github.com/Talkdedsec/talkdedsec-code/releases/latest).
+2. Optionally check it: `Get-FileHash TalkdedsecSetup.exe -Algorithm SHA256` must match the release notes.
+3. Run it. It installs per user to `%LOCALAPPDATA%\Programs\Talkdedsec`; no administrator rights needed.
 
-* Ask a question on [Stack Overflow](https://stackoverflow.com/questions/tagged/vscode)
-* [Request a new feature](CONTRIBUTING.md)
-* Upvote [popular feature requests](https://github.com/microsoft/vscode/issues?q=is%3Aopen+is%3Aissue+label%3Afeature-request+sort%3Areactions-%2B1-desc)
-* [File an issue](https://github.com/microsoft/vscode/issues)
-* Connect with the extension author community on [GitHub Discussions](https://github.com/microsoft/vscode-discussions/discussions) or [Slack](https://aka.ms/vscode-dev-community)
-* Follow [@code](https://x.com/code) and let us know what you think!
+The installer is not code-signed yet, so Windows SmartScreen may ask once: **More info → Run anyway**.
 
-See our [wiki](https://github.com/microsoft/vscode/wiki/Feedback-Channels) for a description of each of these channels and information on some other available community-driven channels.
+## Build from source
 
-## Related Projects
+Requirements: Windows 10/11 x64, Node.js 24.22.1, Python 3, Visual Studio 2022 Build Tools with *Desktop development with C++* and *MSVC Spectre-mitigated libs*, Windows 10/11 SDK (for `signtool`).
 
-Many of the core components and extensions to VS Code live in their own repositories on GitHub. For example, the [node debug adapter](https://github.com/microsoft/vscode-node-debug) and the [mono debug adapter](https://github.com/microsoft/vscode-mono-debug) repositories are separate from each other. For a complete list, please visit the [Related Projects](https://github.com/microsoft/vscode/wiki/Related-Projects) page on our [wiki](https://github.com/microsoft/vscode/wiki).
+```powershell
+npm ci
+$env:PATH = "${env:ProgramFiles(x86)}\Windows Kits\10\bin\10.0.26100.0\x64;$env:PATH"
+npm run gulp vscode-win32-x64-min
+npm run gulp vscode-win32-x64-inno-updater
+npm run gulp vscode-win32-x64-user-setup
+powershell -ExecutionPolicy Bypass -File tlk/kurulum/derle.ps1   # -> .build/win32-x64/TalkdedsecSetup.exe
+```
 
-## Bundled Extensions
+## How the fork is kept
 
-VS Code includes a set of built-in extensions located in the [extensions](extensions) folder, including grammars and snippets for many languages. Extensions that provide rich language support (inline suggestions, Go to Definition) for a language have the suffix `language-features`. For example, the `json` extension provides coloring for `JSON` and the `json-language-features` extension provides rich language support for `JSON`.
+Upstream VS Code is imported as is; every change lives in two idempotent scripts, so a new upstream version is a re-import plus two commands:
 
-## Development Container
-
-This repository includes a Visual Studio Code Dev Containers / GitHub Codespaces development container.
-
-* For [Dev Containers](https://aka.ms/vscode-remote/download/containers), use the **Dev Containers: Clone Repository in Container Volume...** command, which creates a Docker volume for better disk I/O on macOS and Windows.
-  * If you already have VS Code and Docker installed, you can also click [here](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode) to get started. This will cause VS Code to automatically install the Dev Containers extension if needed, clone the source code into a container volume, and spin up a dev container for use.
-
-* For Codespaces, install the [GitHub Codespaces](https://marketplace.visualstudio.com/items?itemName=GitHub.codespaces) extension in VS Code, and use the **Codespaces: Create New Codespace** command.
-
-Docker / the Codespace should have at least **4 cores and 6 GB of RAM (8 GB recommended)** to run a full build. See the [development container README](.devcontainer/README.md) for more information.
-
-## Code of Conduct
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information, see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+| | |
+|---|---|
+| `node tlk/rebrand.mjs` | Name, identity, icons from `tlk/logo.png`, product name in UI strings |
+| `node tlk/ozellestir.mjs` | Privacy defaults, Open VSX, themes, Turkish UI, installer bridge, repository files |
+| `tlk/kurulum/` | The setup shell (C++, Direct2D/DirectWrite) |
+| `site/` | The website, deployed to GitHub Pages |
 
 ## License
 
-Copyright (c) Microsoft Corporation. All rights reserved.
+[MIT](LICENSE.txt). The VS Code source is © Microsoft Corporation; Talkdedsec's changes are © Talkdedsec. Talkdedsec is not affiliated with or endorsed by Microsoft; “Visual Studio Code” is a trademark of Microsoft.
 
-Licensed under the [MIT](LICENSE.txt) license.
+## Security
+
+Please do not open public issues for vulnerabilities. See [SECURITY.md](SECURITY.md).
+
+---
+
+<p align="center"><a href="https://talkdedsec.com">talkdedsec.com</a> · made by <a href="https://github.com/Talkdedsec">Talkdedsec</a></p>

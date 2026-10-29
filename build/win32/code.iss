@@ -9,9 +9,9 @@ AppId={#AppId}
 AppName={#NameLong}
 AppVerName={#NameVersion}
 AppPublisher=Talkdedsec
-AppPublisherURL=https://code.talkdedsec.com/
-AppSupportURL=https://github.com/talkdedseccode/talkdedsec-editor/issues
-AppUpdatesURL=https://github.com/talkdedseccode/talkdedsec-editor/releases
+AppPublisherURL=https://talkdedsec.github.io/talkdedsec-code/
+AppSupportURL=https://github.com/Talkdedsec/talkdedsec-code/issues
+AppUpdatesURL=https://github.com/Talkdedsec/talkdedsec-code/releases
 DefaultGroupName={#NameLong}
 AllowNoIcons=yes
 OutputDir={#OutputDir}
@@ -1390,7 +1390,7 @@ begin
 
   #if "user" == InstallTarget
     if not WizardSilent() and IsAdmin() then begin
-      if MsgBox('This User Installer is not meant to be run as an Administrator. If you would like to install Talkdedsec for all users in this system, download the System Installer instead from https://code.talkdedsec.com. Are you sure you want to continue?', mbError, MB_OKCANCEL) = IDCANCEL then begin
+      if MsgBox('This User Installer is not meant to be run as an Administrator. If you would like to install Talkdedsec for all users in this system, download the System Installer instead from https://talkdedsec.github.io/talkdedsec-code. Are you sure you want to continue?', mbError, MB_OKCANCEL) = IDCANCEL then begin
         Result := False;
       end;
     end;

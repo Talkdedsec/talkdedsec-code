@@ -322,22 +322,6 @@ async function main() {
 	fs.writeFileSync(stateFile, JSON.stringify(_state));
 	fs.writeFileSync(stateContentsFile, JSON.stringify(computeContents()));
 
-	// Symlink .claude/ files to their canonical locations to test Claude agent harness
-	const claudeDir = path.join(root, '.claude');
-	fs.mkdirSync(claudeDir, { recursive: true });
-
-	const claudeMdLink = path.join(claudeDir, 'CLAUDE.md');
-	const claudeMdLinkType = ensureAgentHarnessLink(path.join('..', '.github', 'copilot-instructions.md'), claudeMdLink);
-	if (claudeMdLinkType !== 'existing') {
-		log('.', `Created ${claudeMdLinkType} .claude/CLAUDE.md -> .github/copilot-instructions.md`);
-	}
-
-	const claudeSkillsLink = path.join(claudeDir, 'skills');
-	const claudeSkillsLinkType = ensureAgentHarnessLink(path.join('..', '.agents', 'skills'), claudeSkillsLink);
-	if (claudeSkillsLinkType !== 'existing') {
-		log('.', `Created ${claudeSkillsLinkType} .claude/skills -> .agents/skills`);
-	}
-
 	// foundry-local-sdk's libraryPath redirects its shared libraries but not its
 	// two N-API addons. Packaged builds provision all native files together, so
 	// patch the lazy loader to resolve the addons from libraryPath as well.

@@ -173,6 +173,11 @@ if (process.platform === 'win32' || process.platform === 'linux') {
 	app.commandLine.appendSwitch('lang', electronLocale);
 }
 
+app.on('session-created', session => {
+	session.setSpellCheckerEnabled(false);
+	session.setSpellCheckerDictionaryDownloadURL('http://127.0.0.1:9/');
+});
+
 // Load our code once ready
 perf.mark('code/willWaitForAppReady');
 app.once('ready', function () {

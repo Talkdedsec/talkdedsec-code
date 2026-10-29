@@ -15,7 +15,9 @@ function patch(file, pairs) {
 	const before = read(file);
 	let s = before;
 	for (const [from, to] of pairs) {
-		if (s.includes(to)) { continue; }
+		// when `to` extends `from`, `from` survives the edit, so "applied" means `to` is there; otherwise it means `from` is gone
+		const applied = to.includes(from) ? s.includes(to) : !s.includes(from) && (to === '' || s.includes(to));
+		if (applied) { continue; }
 		if (!s.includes(from)) {
 			throw new Error(`${file}: pattern not found, upstream changed:\n${from}`);
 		}
@@ -40,6 +42,11 @@ patch('src/vs/workbench/services/assignment/common/assignmentService.ts', [
 ]);
 regex('extensions/json-language-features/package.json', /("json\.schemaDownload\.enable": \{[^}]*?"default": )(true|false)/, '$1false');
 regex('extensions/npm/package.json', /("npm\.fetchOnlinePackageInfo": \{[^}]*?"default": )(true|false)/, '$1false');
+// the first-run onboarding is a GitHub Copilot sign-in ("may use your data"), and Copilot isn't shipped
+patch('src/vs/workbench/contrib/welcomeGettingStarted/browser/gettingStarted.contribution.ts', [
+	[`'workbench.welcomePage.experimentalOnboarding': {\n\t\t\tscope: ConfigurationScope.APPLICATION,\n\t\t\ttype: 'boolean',\n\t\t\tdefault: true,`,
+		`'workbench.welcomePage.experimentalOnboarding': {\n\t\t\tscope: ConfigurationScope.APPLICATION,\n\t\t\ttype: 'boolean',\n\t\t\tdefault: false,`],
+]);
 // the chat plugin marketplace list is fetched from raw.githubusercontent.com on its own
 patch('src/vs/workbench/contrib/chat/browser/chat.shared.contribution.ts', [
 	[`import { DEFAULT_PLUGIN_MARKETPLACE } from '../common/plugins/marketplaceReference.js';\n`, ''],
@@ -167,6 +174,11 @@ patch('src/mainImpl.ts', [
 	['const userLocale = getUserDefinedLocale(argvConfig);\n',
 		`const userLocale = getUserDefinedLocale(argvConfig) ?? (osLocale.startsWith('tr') ? 'tr' : undefined);\n`],
 ]);
+// Chromium's spellchecker pulls Hunspell dictionaries from Google on first launch; no session gets to do that
+patch('src/mainImpl.ts', [
+	[`\tapp.commandLine.appendSwitch('lang', electronLocale);\n}\n\n// Load our code once ready`,
+		`\tapp.commandLine.appendSwitch('lang', electronLocale);\n}\n\napp.on('session-created', session => {\n\tsession.setSpellCheckerEnabled(false);\n\tsession.setSpellCheckerDictionaryDownloadURL('http://127.0.0.1:9/');\n});\n\n// Load our code once ready`],
+]);
 // product name in the pack's translations, with Turkish suffixes re-harmonised ("VS Code'un" -> "Talkdedsec'in")
 const SUFFIX = { u: 'i', un: 'in', nun: 'in', yu: 'i', a: 'e', ya: 'ye', da: 'te', ta: 'te', daki: 'teki', dan: 'ten', tan: 'ten', la: 'le', yla: 'le' };
 function* jsonFiles(dir) {
@@ -180,6 +192,60 @@ for (const f of jsonFiles('extensions/vscode-language-pack-tr/translations')) {
 	const s = before.replace(/(?:Visual Studio Code|VS Code|Code - OSS)(?:'([a-zçğıöşü]+))?/g, (_, suf) =>
 		suf === undefined ? 'Talkdedsec' : `Talkdedsec'${SUFFIX[suf] ?? suf}`);
 	save(f, before, s);
+}
+
+// ---- repository files ----------------------------------------------------------------------------
+
+// upstream's .github is Microsoft's CI, bots and agent setup; ours replaces it whole
+function syncDir(src, dst) {
+	const want = new Set();
+	const walk = (rel = '') => {
+		for (const e of fs.readdirSync(p(src, rel), { withFileTypes: true })) {
+			const r = path.join(rel, e.name);
+			if (e.isDirectory()) { walk(r); continue; }
+			want.add(r);
+			const from = fs.readFileSync(p(src, r)), to = p(dst, r);
+			if (!fs.existsSync(to) || !from.equals(fs.readFileSync(to))) {
+				fs.mkdirSync(path.dirname(to), { recursive: true });
+				fs.writeFileSync(to, from);
+				changed.push(path.join(dst, r));
+			}
+		}
+	};
+	walk();
+	const prune = (rel = '') => {
+		for (const e of fs.readdirSync(p(dst, rel), { withFileTypes: true })) {
+			const r = path.join(rel, e.name);
+			if (e.isDirectory()) {
+				prune(r);
+				if (fs.readdirSync(p(dst, r)).length === 0) { fs.rmdirSync(p(dst, r)); }
+			} else if (!want.has(r)) {
+				fs.rmSync(p(dst, r));
+				changed.push(path.join(dst, r));
+			}
+		}
+	};
+	prune();
+}
+syncDir('tlk/repo/github', '.github');
+for (const f of ['README.md', 'README.tr.md', 'SECURITY.md', 'CONTRIBUTING.md']) {
+	const src = fs.readFileSync(p('tlk/repo', f));
+	if (!fs.existsSync(p(f)) || !src.equals(fs.readFileSync(p(f)))) { fs.writeFileSync(p(f), src); changed.push(f); }
+}
+for (const f of ['AGENTS.md', '.agents']) {
+	if (fs.existsSync(p(f))) { fs.rmSync(p(f), { recursive: true }); changed.push(f); }
+}
+// the agent-harness links point at the agent files removed above
+regex('build/npm/postinstall.ts', /(\n\tfs\.writeFileSync\(stateContentsFile, JSON\.stringify\(computeContents\(\)\)\);\n)(\n\t\/\/ Symlink \.claude\/ files[\s\S]*?\.claude\/skills -> \.agents\/skills`\);\n\t\}\n)?/, '$1');
+{
+	const f = '.gitignore';
+	const before = read(f);
+	save(f, before, /^CLAUDE\.md$/m.test(before) ? before : before.replace(/\n*$/, '\n\n# local agent notes\nCLAUDE.md\n'));
+}
+{
+	const f = 'LICENSE.txt';
+	const before = read(f);
+	save(f, before, before.includes('Talkdedsec') ? before : before.replace(/(Copyright \(c\) 2015 - present Microsoft Corporation)(\r?\n)/, `$1$2Copyright (c) ${new Date().getFullYear()} Talkdedsec$2`));
 }
 
 console.log(`${changed.length} files changed`);

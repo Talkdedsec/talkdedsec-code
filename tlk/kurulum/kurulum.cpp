@@ -49,7 +49,7 @@ static const wchar_t* T(const Str& s) { return g_lang == TR ? s.tr : s.en; }
 namespace txt {
 const Str eyebrowInstall{ L"KURULUM", L"SETUP" };
 const Str eyebrowUpdate{ L"GÜNCELLEME", L"UPDATE" };
-const Str headline{ L"Sana ait bir\nkod editörü.", L"A code editor\nthat answers to you." };
+const Str headline{ L"Sana ait bir\nkod editörü.", L"Your own\ncode editor." };
 const Str lead{ L"Telemetri yok. Sade bir çekirdek, gömülü bir ajan.\nSenin makinen, senin kuralların.", L"No telemetry. A lean core, a built-in agent.\nYour machine, your rules." };
 const Str install{ L"Kur", L"Install" };
 const Str update{ L"Güncelle", L"Update" };
@@ -299,7 +299,7 @@ static void FocusRing(D2D1_RECT_F r, float radius, float a) {
 enum BtnKind { PRIMARY, GHOST, LINK };
 static float Button(int id, const std::wstring& label, float x, float y, BtnKind kind, float a, bool interactive = true) {
 	const float h = kind == LINK ? 24.f : 46.f, pad = kind == LINK ? 0.f : 26.f;
-	float w = TextWidth(label, F_BTN) + pad * 2 + (kind == LINK ? 18 : 0);
+	float w = TextWidth(label, F_BTN) + pad * 2 + (kind == LINK ? 26 : 0);
 	D2D1_RECT_F hit{ x, y, x + w, y + h };
 	if (interactive && a > 0.5f) { PushItem(id, hit); }
 	float hv = HoverAmt(id);
@@ -323,13 +323,13 @@ static float Button(int id, const std::wstring& label, float x, float y, BtnKind
 	} else {
 		Text(label, F_BTN, r.left, r.top + 2, w, h, Hex(0xC9CDD4), a * (0.75f + 0.25f * hv));
 		// arrow slides on hover
-		float ax = r.right - 10 + 4 * hv, ay = r.top + 12;
+		float ax = r.right - 4 + 3 * hv, ay = r.top + 12;
 		g_brush->SetColor(Hex(0xC9CDD4, a * (0.75f + 0.25f * hv)));
 		g_rt->DrawLine({ ax - 8, ay }, { ax, ay }, g_brush, 1.4f);
 		g_rt->DrawLine({ ax - 4, ay - 4 }, { ax, ay }, g_brush, 1.4f);
 		g_rt->DrawLine({ ax - 4, ay + 4 }, { ax, ay }, g_brush, 1.4f);
 		g_brush->SetColor(Hex(0x6E7681, a * hv));
-		g_rt->DrawLine({ r.left, r.bottom - 1 }, { r.left + (w - 18) * hv, r.bottom - 1 }, g_brush, 1);
+		g_rt->DrawLine({ r.left, r.bottom - 1 }, { r.left + (w - 26) * hv, r.bottom - 1 }, g_brush, 1);
 	}
 	g_rt->SetTransform(D2D1::Matrix3x2F::Identity());
 	if (Focused(id)) { FocusRing(r, kind == LINK ? 4 : h / 2, a); }
@@ -510,10 +510,10 @@ static void Chrome(float a) {
 	}
 	// footer link
 	if (g_page != INSTALLING) {
-		float lw = TextWidth(L"code.talkdedsec.com", F_SMALL);
+		float lw = TextWidth(L"talkdedsec.github.io", F_SMALL);
 		D2D1_RECT_F r{ W - 64 - lw, H - 44, W - 64, H - 24 };
 		PushItem(ID_SITE, r, false);
-		Text(L"code.talkdedsec.com", F_SMALL, r.left, r.top, lw + 4, 20, Hex(0x6E7681), a * (0.7f + 0.3f * HoverAmt(ID_SITE)));
+		Text(L"talkdedsec.github.io", F_SMALL, r.left, r.top, lw + 4, 20, Hex(0x6E7681), a * (0.7f + 0.3f * HoverAmt(ID_SITE)));
 	}
 }
 
@@ -762,7 +762,7 @@ static void Activate(int id) {
 	case ID_CHANGE: ChooseFolder(); break;
 	case ID_OPEN: Launch(); DestroyWindow(g_hwnd); break;
 	case ID_LOG: ShellExecuteW(nullptr, L"open", g_logPath.c_str(), nullptr, nullptr, SW_SHOWNORMAL); break;
-	case ID_SITE: ShellExecuteW(nullptr, L"open", L"https://code.talkdedsec.com", nullptr, nullptr, SW_SHOWNORMAL); break;
+	case ID_SITE: ShellExecuteW(nullptr, L"open", L"https://talkdedsec.github.io/talkdedsec-code/", nullptr, nullptr, SW_SHOWNORMAL); break;
 	default:
 		if (id >= ID_OPT0 && id <= ID_OPT4) { g_opt[id - ID_OPT0] = !g_opt[id - ID_OPT0]; }
 	}
@@ -880,6 +880,7 @@ int WINAPI wWinMain(HINSTANCE inst, HINSTANCE, PWSTR, int show) {
 	SetProcessDpiAwarenessContext(DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2);
 	CoInitializeEx(nullptr, COINIT_APARTMENTTHREADED);
 	g_lang = PRIMARYLANGID(GetUserDefaultUILanguage()) == LANG_TURKISH ? TR : EN;
+	if (const wchar_t* cmd = GetCommandLineW(); wcsstr(cmd, L"--lang=en")) { g_lang = EN; } else if (wcsstr(cmd, L"--lang=tr")) { g_lang = TR; }
 	DefaultDir();
 	D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, &g_d2d);
 	DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), (IUnknown**)&g_dw);

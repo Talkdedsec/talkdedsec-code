@@ -5,8 +5,8 @@ import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '..');
 const NAME = 'Talkdedsec';
-const REPO = 'https://github.com/talkdedseccode/talkdedsec-editor';
-const SITE = 'https://code.talkdedsec.com';
+const REPO = 'https://github.com/Talkdedsec/talkdedsec-code';
+const SITE = 'https://talkdedsec.github.io/talkdedsec-code';
 const YEAR = new Date().getFullYear();
 
 const p = (...s) => path.join(root, ...s);
@@ -53,8 +53,8 @@ Object.assign(product, {
 	serverDataFolderName: '.talkdedsec-server',
 	tunnelApplicationName: 'talkdedsec-tunnel',
 	licenseName: 'MIT',
-	licenseUrl: `${REPO}/blob/main/LICENSE`,
-	serverLicenseUrl: `${REPO}/blob/main/LICENSE`,
+	licenseUrl: `${REPO}/blob/main/LICENSE.txt`,
+	serverLicenseUrl: `${REPO}/blob/main/LICENSE.txt`,
 	reportIssueUrl: `${REPO}/issues/new`,
 	documentationUrl: SITE,
 	requestFeatureUrl: `${REPO}/discussions`,
@@ -143,7 +143,7 @@ for (const [from, to] of Object.entries(icons)) {
 // so identifiers, the `vscode` API namespace, comments and copyright headers stay as they are.
 const NAMES = [['Visual Studio Code', NAME], ['VS Code', NAME], ['Code - OSS', NAME]];
 // Microsoft's bundled chat extension keeps its own prompts and snapshot tests untouched
-const skipDir = /(^|[\\/])(test|tests|node_modules|fixtures|testWorkspace|out|copilot|vscode-test-resolver)([\\/]|$)/;
+const skipDir = /(^|[\\/])(test|tests|node_modules|fixtures|testWorkspace|out)([\\/]|$)|^extensions[\\/](copilot|vscode-test-resolver)$/;
 function* walk(dir) {
 	for (const e of fs.readdirSync(p(dir), { withFileTypes: true })) {
 		const rel = path.join(dir, e.name);

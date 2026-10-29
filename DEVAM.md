@@ -4,48 +4,60 @@ Son güncelleme: 2026-10-29
 
 ## Durum
 - Temel: VS Code **1.144.0** kaynağı (GitHub tag arşivi), `chore: import` commit'i saf upstream.
-- Rename + göz logosu uygulandı (`tlk/rebrand.mjs`). Henüz `npm install` / build yapılmadı.
+- Repo: `github.com/Talkdedsec/talkdedsec-code` (public). Site: `talkdedsec.github.io/talkdedsec-code/` (Pages, `site/`).
+- Derlendi, kuruldu, ölçüldü (aşağıda). Release etiketi uygulama sürümüyle aynı: `v1.144.0`.
+- `code.talkdedsec.com` kapatılıyor; tüm adresler github.io / GitHub reposuna döndü. Eski repolar `talkdedseccode` hesabında.
 - Eski fork `D:\tlk-code` (1.130.0, commit'lenmemiş) yalnızca referans; kimlik değerleri oradan alındı.
 
-## Rename kapsamı
-- `product.json`: ad, applicationName `talkdedsec`, veri klasörleri, AppId'ler (eski kurulumla aynı), URL'ler.
+## Upstream güncellemesi
+Yeni tarball'ı içe aktar (Talkdedsec commit'i), sonra `node tlk/rebrand.mjs` ve `node tlk/ozellestir.mjs`; ikinci çalıştırma
+`0 files changed` demeli. Repo `core.eol=lf` (Windows checkout CRLF yazarsa yamalar tutmaz). `patch()` hedef kaynağı kapsıyorsa
+ya da silme ise ayrı ayrı "uygulanmış" kontrolü yapar — bunu bozma, yamalar sessizce atlanıyordu.
+
+## Rename kapsamı (`tlk/rebrand.mjs`)
+- `product.json`: ad, applicationName `talkdedsec`, veri klasörleri, AppId'ler (eski kurulumla aynı), GitHub/github.io URL'leri.
 - exe kaynakları (CompanyName, LegalCopyright), Inno kurulum (yayıncı, URL, `TalkdedsecSetup`), Start menü kutusu.
 - İkonlar: win32 ico/png/bmp, linux, darwin icns, server, başlık çubuğu, boş editör filigranı, Agents penceresi, GitHub giriş sayfası.
 - UI metinleri: tırnak içindeki "VS Code" / "Visual Studio Code" / "Code - OSS" → "Talkdedsec" (src + yerleşik eklenti nls).
 
 ## Bilerek dokunulmayanlar
-- Microsoft telif başlıkları ve LICENSE.txt (MIT gereği).
-- `vscode` API isim alanı, `vscode://` dışı iç tanımlayıcılar, `package.json` name (`code-oss-dev`, build buna bağlı).
-- `extensions/copilot` (Microsoft'un kendi eklentisi), test klasörleri.
-- `keepUpstream` listesindeki dosyalar (karşılaştırma yapan ya da gerçek VS Code'u anlatan metinler).
-- Dil dosyası ikonları (`resources/win32/*.ico` dil başına), aquarium sürprizindeki VS Code silüeti (`vscodeLogoPath.ts`).
+- Microsoft telif başlıkları ve LICENSE.txt (MIT gereği; altına Talkdedsec satırı eklenir).
+- `vscode` API isim alanı, iç tanımlayıcılar, `package.json` name (`code-oss-dev`, build buna bağlı).
+- `extensions/copilot` ve `extensions/vscode-test-resolver` metinleri, test klasörleri, `keepUpstream` listesi.
+- Dil dosyası ikonları (`resources/win32/*.ico`), aquarium sürprizindeki VS Code silüeti (`vscodeLogoPath.ts`).
 
 ## Özelleştirme (`tlk/ozellestir.mjs`)
 - Gizlilik: telemetri varsayılanı `off`, experiments kapalı, `voiceWsUrl` silindi, JSON şema indirme + npm paket sorgusu kapalı,
-  chat eklenti pazarı listesi boş (raw.githubusercontent isteği yok).
-- Eklenti mağazası: Open VSX (eski fork'taki çalışan blok).
-- `extensions/copilot` npm kurulumuna ve build'e girmez; core'daki Copilot SDK / agent host duruyor.
-- Test eklentileri (api-tests, colorize, test-resolver) kurulum ve derleme listesinden çıktı.
-- Source map pakete girmez (`stripSourceMapsInPackagingTasks = true`).
+  chat eklenti pazarı listesi boş, Chromium yazım denetimi + Google'dan sözlük indirme kapalı (her oturumda).
+  Ölçüm: açılışta dış bağlantı 0 (önceden redirector.gvt1.com'dan `en-US-10-1.bdic` iniyordu).
+- İlk açılıştaki Copilot giriş penceresi (`workbench.welcomePage.experimentalOnboarding`) varsayılan kapalı.
+- Eklenti mağazası: Open VSX.
+- `extensions/copilot` ve test eklentileri npm kurulumuna ve build'e girmez; source map yok.
 - 5 tema (`tlk/themes`), varsayılan Talkdedsec Dark/Light; açılış ön-renkleri tema dosyasından hesaplanır.
-- Koyu kurulum sihirbazı: `tlk/kurulum-koyu.pas` code.iss sonuna eklenir.
-- Türkçe: `extensions/vscode-language-pack-tr` (Open VSX 1.131.0, MIT) gömülü; çevirilerde ürün adı Talkdedsec, Türkçe ekler
-  uyumlu ("Talkdedsec'in"). Yerleşik paket `languagepacks.json`'a girsin diye `NativeLanguagePackService` açılışta `update()` çağırıyor.
-  Dil işletim sistemi diline göre seçilir (Türkçe Windows → Türkçe).
-
-## Doğrulanmamış (build yok)
-- Türkçe ilk açılışta değil, ikinci açılıştan itibaren gelir (paket listesi paylaşımlı süreçte yazılıyor) — build sonrası kontrol et.
-- Dil paketi 1.131 çevirisi; 1.144'te yeni gelen metinler İngilizce kalır.
-- Chat paneli hâlâ Copilot kurulumu önerebilir (`defaultChatAgent` silinemez, workbench çöküyor).
+- Koyu Inno sihirbazı (`tlk/kurulum-koyu.pas`) + kabuk için ilerleme köprüsü (`/TLKPROGRESS`).
+- Türkçe: `extensions/vscode-language-pack-tr` (Open VSX 1.131.0, MIT) gömülü, ürün adı ve Türkçe ekler uyumlu.
+  Türkçe Windows'ta argv.json'da locale yoksa Türkçe açılır; yerleşik paket açılışta `languagepacks.json`'a yazılır.
+- Repo dosyaları: `.github` tamamen `tlk/repo/github` ile değiştirilir (Pages workflow + görseller), `.agents`/`AGENTS.md` silinir,
+  postinstall'daki ajan link bloğu çıkarılır, README/README.tr/SECURITY/CONTRIBUTING `tlk/repo`'dan gelir.
 
 ## Kurulum kabuğu (`tlk/kurulum/`)
 - C++ Win32 + Direct2D/DirectWrite, WebView2 yok, statik CRT. Inno kurulumu RCDATA olarak gömülü; temp'e açılıp
-  `/VERYSILENT /TASKS=… /DIR=… /TLKPROGRESS=<dosya>` ile çalışır, ilerleme code.iss'teki köprüden binde olarak okunur.
-- Göz: `tlk/logo.png` açılışta 94 sütunluk yarım ton ızgarayla noktalara çevrilir (sitedekiyle aynı yöntem); imleci izler,
-  göz kırpar, kurulumda açıya göre yanar, bitince parlar.
-- Sayfalar: karşılama, seçenekler (masaüstü, PATH, sağ tık, ilişkilendirme, bitince başlat, konum), kuruluyor, hazır, hata.
-- TR/EN: kurulum dili + `~/.talkdedsec/argv.json` "locale". Mevcut kurulum kayıt defterinden bulunur → "Güncelle" modu.
-- Klavye: Tab/Shift+Tab odak, Enter/Space, Esc. Açıkken (mutex `talkdedsec`) kurmaz, uyarır.
+  `/VERYSILENT /TASKS=… /DIR=… /TLKPROGRESS=<dosya>` ile çalışır. Temiz kurulum ve güncelleme yolu denendi.
+- Göz `tlk/logo.png`'den açılışta noktalara çevrilir; imleci izler, göz kırpar, kurulumda yanar, bitince parlar.
+- TR/EN: kurulum dili + `~/.talkdedsec/argv.json` "locale". Kullanıcı kendi makinesinde EN seçti; kabuk TR yazarsa geri al.
 
-## Sıradaki
-- `npm ci` + derleme, açılış testi (tema, Türkçe, Open VSX, kurulum sihirbazı).
+## Site (`site/`)
+- Next 16 statik export, `basePath: /talkdedsec-code`. Kök sayfa dile göre yönlendirir. `scripts/pages-uzanti.mjs` (postbuild)
+  uzantısız OG/ikon dosyalarına `.png` kopyası koyar ve adresleri düzeltir (Pages içerik türünü uzantıdan seçiyor).
+- Konular Discussions'tan derleme anında çekilir; workflow her gün 04:17 UTC'de yeniden derler.
+- Ölçümler (2026-10-29, Win 11 Pro 26300, kurulu üretim sürümü, 3 çalıştırma medyanı): açılış 0,31 sn · 8 süreç · ~1460 MB ·
+  0,75 GB kurulu · 187,5 MB kurulum · 94 yerleşik eklenti · 0 source map · açılışta 0 dış bağlantı.
+
+## Görseller
+- `powershell -ExecutionPolicy Bypass -File tlk/repo/gorsel.ps1`: editör + kurulum ekran görüntüsü (yalnız kendi penceresi, PrintWindow),
+  README banner'ı, sosyal önizleme `Desktop\Medya\og-images\talkdedsec-code.png` (Settings > Social preview'a elle yüklenir).
+
+## Bilinen eksikler
+- İlk açılış rehberi ("Use AI features with Copilot for free") ve sohbet paneli hâlâ Copilot'a yönlendiriyor; Copilot paketlenmediği için kırık.
+- Dil paketi 1.131 çevirisi; 1.144'te yeni gelen metinler İngilizce kalır.
+- Kurulum imzasız; SmartScreen bir kez sorar.
