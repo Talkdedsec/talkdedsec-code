@@ -237,6 +237,12 @@ for (const f of ['AGENTS.md', '.agents']) {
 }
 // the agent-harness links point at the agent files removed above
 regex('build/npm/postinstall.ts', /(\n\tfs\.writeFileSync\(stateContentsFile, JSON\.stringify\(computeContents\(\)\)\);\n)(\n\t\/\/ Symlink \.claude\/ files[\s\S]*?\.claude\/skills -> \.agents\/skills`\);\n\t\}\n)?/, '$1');
+// the tarball only has LFS pointers for the chat extension's test cache; GitHub rejects pointers without objects (GH008)
+regex('extensions/copilot/.gitattributes', /^\*\.sqlite filter=lfs diff=lfs merge=lfs -text\n|^(?![\s\S]*filter=lfs)/m, '');
+if (fs.existsSync(p('extensions/copilot/test/simulation/cache'))) {
+	fs.rmSync(p('extensions/copilot/test/simulation/cache'), { recursive: true });
+	changed.push('extensions/copilot/test/simulation/cache');
+}
 {
 	const f = '.gitignore';
 	const before = read(f);
